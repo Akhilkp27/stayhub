@@ -6,7 +6,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
 
-        <title>Laravel</title>
+        <title>StayHub - The booking adviser </title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
