@@ -25,8 +25,17 @@
             </div>
             <div class="col-lg-6">
                 <div class="wow fadeInUp mt-5" data-wow-delay="0.2s">
-                    <form method="POST" action="{{ route('login') }}" >
+                    <form method="POST" action="{{ route('customer.login') }}" >
                         @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="row g-3">
                             <div class="col-md-12">
                                 <div class="form-floating">

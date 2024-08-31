@@ -144,7 +144,7 @@
                     </div>
                     <div>
                         
-                        <label for="">welcome back {{$user->name}}</label>
+                        <label for="">welcome back {{$user->first_name}}</label>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><img src="img/icons/profile.png" alt=""></a>
