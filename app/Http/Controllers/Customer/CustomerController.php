@@ -1,17 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Routing\Controller as BaseController;
 
-class CustomerController extends Controller
+class CustomerController extends BaseController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * This constructor ensures that the customer is authenticated.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:customer');
+    }
+
+    /**
+     * Show the customer dashboard.
+     *
+     * This method is responsible for returning the customer dashboard view.
+     */
+    public function index()
+    {
+        // You can pass any data needed for the dashboard to the view.
+        // For example, recent orders, account details, etc.
+        $customer = Auth::guard('customer')->user();
+        
+        return view('customer.dashboard', compact('customer'));
+    }
     public function store(Request $request)
     {
     //    dd($request->all());
@@ -49,16 +73,4 @@ class CustomerController extends Controller
             'exists' => $emailExists,
         ]);
     }
-    public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::guard('customer')->attempt($credentials)) {
-        // The user is authenticated with the 'customer' guard
-        $user = Auth::guard('customer')->user();
-        return redirect()->intended('dashboard');
-    }
-
-    return redirect()->back()->withErrors(['email' => 'Invalid credentials.']);
-}
 }
