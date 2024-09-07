@@ -255,10 +255,12 @@
     }
  
 document.getElementById('email').addEventListener('keyup', function() {
+    console.log('inside mail');
+    const checkEmailRoute = "{{ route('customer.check.email') }}";
     var email = this.value;
 
     if (email.length > 0) {
-        fetch('/check-email', {
+        fetch(checkEmailRoute, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

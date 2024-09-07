@@ -2,7 +2,7 @@
 @section('content')
         <div class="container-xxl bg-white p-0">
             <!-- Header Start -->
-            @include('layouts.dashboard-navigation')
+            @include('partials.customer.navigation')
             <!-- Header End -->
     
             <!-- Carousel Start -->
@@ -10,7 +10,7 @@
                 <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 100vh;">
-                            <img class="w-100" src="img/carousel-1.jpg" alt="Image">
+                            <img class="w-100" src="{{ asset('img/carousel-1.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+                            <img class="w-100" src="{{ asset('img/carousel-2.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
@@ -137,16 +137,16 @@
                             <div class="col-lg-6">
                                 <div class="row g-3">
                                     <div class="col-6 text-end">
-                                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/about-1.jpg" style="margin-top: 25%;">
+                                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="{{ asset('img/about-1.jpg') }}" style="margin-top: 25%;">
                                     </div>
                                     <div class="col-6 text-start">
-                                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/about-2.jpg">
+                                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="{{ asset('img/about-2.jpg') }}">
                                     </div>
                                     <div class="col-6 text-end">
-                                        <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/about-3.jpg">
+                                        <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="{{ asset('img/about-3.jpg') }}">
                                     </div>
                                     <div class="col-6 text-start">
-                                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/about-4.jpg">
+                                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="{{ asset('img/about-4.jpg') }}">
                                     </div>
                                 </div>
                             </div>

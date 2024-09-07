@@ -13,16 +13,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class CustomerController extends BaseController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * This constructor ensures that the customer is authenticated.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:customer');
-    }
-
+    
     /**
      * Show the customer dashboard.
      *
@@ -38,7 +29,7 @@ class CustomerController extends BaseController
     }
     public function store(Request $request)
     {
-    //    dd($request->all());
+        // dd('Reached store method');
         $user = Customer::create([
             'first_name' => $request->fname,
             'last_name' => $request->lname,
@@ -51,9 +42,12 @@ class CustomerController extends BaseController
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // return redirect(route('dashboard', absolute: false));
 
-        // return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
+        // // return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
+        // Redirect after successful registration
+        return redirect()->route('customer.dashboard')->with('success', 'Registration successful!');
+
     }
     public function checkEmail(Request $request)
     {

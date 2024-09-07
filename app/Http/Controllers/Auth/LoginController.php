@@ -1,50 +1,36 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller ;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Routing\Controller as BaseController;
 
-class LoginController extends BaseController
+class LoginController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
     public function login(Request $request)
-    { 
-        dd('ghg');
+    {
         $this->validateLogin($request);
 
-        $guards = ['admin', 'staff', 'customer']; // Define the order of guards to check
-
+        $guards = ['admin', 'staff', 'customer'];
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->attempt($this->credentials($request))) {
-                dd('Authenticated as ' . $guard);
-                $request->session()->regenerate();
-
-                return redirect()->intended($this->redirectPath($guard));
+            if (Auth::guard($guard)->attempt($this->credentials($request), $request->filled('remember'))) {
+                return $this->sendLoginResponse($request, $guard);
             }
         }
-        dd($this->credentials($request));
-        // If none of the guards authenticate, throw an error
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
-        ]);
+
+        return $this->sendFailedLoginResponse($request);
     }
 
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
     }
@@ -54,22 +40,31 @@ class LoginController extends BaseController
         return $request->only('email', 'password');
     }
 
-    protected function redirectPath($guard)
+    protected function sendLoginResponse(Request $request, $guard)
     {
-        // Define different redirects based on the guard
-        switch ($guard) {
-            case 'admin':
-                return route('admin.dashboard');
-            case 'staff':
-                return route('staff.dashboard');
-            default:
-                return route('customer.dashboard');
-        }
+        $request->session()->regenerate();
+
+        $redirectTo = match ($guard) {
+            'admin' => route('admin.dashboard'),
+            'staff' => route('staff.dashboard'),
+            'customer' => route('customer.dashboard'),
+            default => route('home'),
+        };
+
+        return redirect()->intended($redirectTo);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
     }
 
     public function logout(Request $request)
     {
         $guard = Auth::getDefaultDriver();
+
         Auth::guard($guard)->logout();
 
         $request->session()->invalidate();
