@@ -23,7 +23,7 @@
                     </div>
                     <div>
                         
-                        <label for="">welcome back {{$customer->first_name}}</label>
+                        <label for="">welcome back </label>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><img src="{{asset('img/icons/profile.png')}}" alt=""></a>
