@@ -19,7 +19,7 @@
                         <a href="#about" class="nav-item nav-link">About</a>
                         <a href="#service" class="nav-item nav-link">Services</a>
                         <a href="room.html" class="nav-item nav-link">Rooms</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="contact.html" class="nav-item nav-link">Staff</a>
                     </div>
                     <div>
                         

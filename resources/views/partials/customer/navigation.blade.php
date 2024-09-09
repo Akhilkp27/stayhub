@@ -18,8 +18,10 @@
                         <a href="{{route('customer.dashboard')}}" class="nav-item nav-link active">Home</a>
                         <a href="#about" class="nav-item nav-link">About</a>
                         <a href="#service" class="nav-item nav-link">Services</a>
-                        <a href="room.html" class="nav-item nav-link">Rooms</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="" class="nav-item nav-link">Rooms</a>
+                        <a href="" class="nav-item nav-link">My Bookings</a>
+                        <a href="" class="nav-item nav-link">Notifications</a>
+                        <a href="" class="nav-item nav-link">Contact</a>
                     </div>
                     <div>
                         

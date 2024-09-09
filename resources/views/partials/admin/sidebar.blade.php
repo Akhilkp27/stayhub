@@ -49,10 +49,9 @@
               </ul>
             </div>
           </li>
-       
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#submenu">
-              <i class="fas fa-calendar"></i>
+              <i class="fas fa-calendar-alt"></i>
               <p>Booking Management</p>
               <span class="caret"></span>
             </a>
@@ -85,13 +84,7 @@
             <div class="collapse" id="submenu2">
               <ul class="nav nav-collapse">
                 <li>
-                    <a href="#"> <span class="sub-item">Add Room</span></a>
-                </li>
-                <li>
-                    <a href="#"> <span class="sub-item">Edit Room</span></a>
-                </li>
-                <li>
-                    <a href="#"> <span class="sub-item">Delete Room</span></a>
+                    <a href="#"> <span class="sub-item">Room List</span></a>
                 </li>
                 <li>
                     <a href="#"> <span class="sub-item">Room Type</span></a>
@@ -116,7 +109,7 @@
           </li>
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#submenu3">
-              <i class="fas fa-user"></i>
+              <i class="fas fa-user-cog"></i>
               <p>Customer Management</p>
               <span class="caret"></span>
             </a>
@@ -133,6 +126,175 @@
                 </li>
                
               </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu4">
+              <i class="fas fa-user-tie"></i>
+              <p>Staff Management</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu4">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">View Profile</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Roles and Permissions</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Activity Log</span></a>
+                </li>
+               
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu5">
+              <i class="fas fa-money-check-alt"></i>
+              <p>Financial Management</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu5">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Manage Payment Methods</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">View And Process Payment</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Reports</span></a>
+                </li>
+               
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu6">
+              <i class="fas fa-globe"></i>
+              <p>Content Management</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu6">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Website Content</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Terms And Conditions</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">SEO Management</span></a>
+                </li>
+               
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu7">
+              <i class="fas fa-wrench"></i>
+              <p>Settings</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu7">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Hotel Settings</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">System Settings</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Security Settings</span></a>
+                </li>
+               
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu8">
+              <i class="fas fa-chart-line"></i>
+              <p>Reports And Analytics</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu8">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Analytics Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Generate Reports</span></a>
+                </li>
+               </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu9">
+              <i class="fas fa-user-shield"></i>
+              <p>Acess And Control</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu9">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Role-Based Access Control</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Audit Trails</span></a>
+                </li>
+               </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu10">
+              <i class="fas fa-bell"></i>
+              <p>Notifications</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu10">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Send Notifications</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Customer Communication</span></a>
+                </li>
+               </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu11">
+              <i class="fas fa-comments"></i>
+              <p>Feedback and Reviews</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu11">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Monitor Reviews</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Review Management</span></a>
+                </li>
+               </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#submenu12">
+              <i class="fas fa-bullhorn"></i>
+              <p>Marketing And Promotions</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="submenu12">
+              <ul class="nav nav-collapse">
+                <li>
+                    <a href="#"> <span class="sub-item">Manage Promotions</span></a>
+                </li>
+                <li>
+                    <a href="#"> <span class="sub-item">Email Campaigns</span></a>
+                </li>
+               </ul>
             </div>
           </li>
         </ul>
