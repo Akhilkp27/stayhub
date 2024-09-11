@@ -1,603 +1,662 @@
-@extends('layouts.app')
+
+
+@extends('layouts.admin_staff_layout')
 @section('content')
-        <div class="container-xxl bg-white p-0">
-            <!-- Header Start -->
-            @include('partials.staff.navigation')
-            <!-- Header End -->
-    
-            <!-- Carousel Start -->
-            <div class="container-fluid p-0 m-0">
-                <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 100vh;">
-                            <img class="w-100" src="{{ asset('img/carousel-1.jpg') }}" alt="Image">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
-                                    <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
-                                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
-                                    <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100" src="{{ asset('img/carousel-2.jpg') }}" alt="Image">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
-                                    <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
-                                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
-                                    <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+    <div class="wrapper">
+
+     @include('partials.staff.sidebar')
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a href="index.html" class="logo">
+                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
             </div>
-            
-            <!-- Carousel End -->
-    
-    
-            <!-- Booking Start -->
-            <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="container">
-                    <div class="bg-white shadow" style="padding: 35px;">
-                        <div class="row g-2">
-                            <div class="col-md-10">
-                                <div class="row g-2">
-                                    <div class="col-md-3">
-                                        <div class="date" id="date1" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
-                                                placeholder="Check in" data-target="#date1" data-toggle="datetimepicker" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="date" id="date2" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" placeholder="Check out" data-target="#date2" data-toggle="datetimepicker"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-select">
-                                            <option selected>Adult</option>
-                                            <option value="1">Adult 1</option>
-                                            <option value="2">Adult 2</option>
-                                            <option value="3">Adult 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-select">
-                                            <option selected>Child</option>
-                                            <option value="1">Child 1</option>
-                                            <option value="2">Child 2</option>
-                                            <option value="3">Child 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary w-100">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Booking End -->
-    
-    
-            <!-- About Start -->
-            <div id="about" class="section">
-                <div class="container-xxl py-5">
-                    <div class="container">
-                        <div class="row g-5 align-items-center">
-                            <div class="col-lg-6">
-                                <h6 class="section-title text-start text-primary text-uppercase">About Us</h6>
-                                <h1 class="mb-4">Welcome to <span class="text-primary text-uppercase">Hotelier</span></h1>
-                                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                                <div class="row g-3 pb-4">
-                                    <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="border rounded p-1">
-                                            <div class="border rounded text-center p-4">
-                                                <i class="fa fa-hotel fa-2x text-primary mb-2"></i>
-                                                <h2 class="mb-1" data-toggle="counter-up">1234</h2>
-                                                <p class="mb-0">Rooms</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                                        <div class="border rounded p-1">
-                                            <div class="border rounded text-center p-4">
-                                                <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
-                                                <h2 class="mb-1" data-toggle="counter-up">1234</h2>
-                                                <p class="mb-0">Staffs</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
-                                        <div class="border rounded p-1">
-                                            <div class="border rounded text-center p-4">
-                                                <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                                <h2 class="mb-1" data-toggle="counter-up">1234</h2>
-                                                <p class="mb-0">Clients</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a class="btn btn-primary py-3 px-5 mt-2" href="">Explore More</a>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row g-3">
-                                    <div class="col-6 text-end">
-                                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="{{ asset('img/about-1.jpg') }}" style="margin-top: 25%;">
-                                    </div>
-                                    <div class="col-6 text-start">
-                                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="{{ asset('img/about-2.jpg') }}">
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="{{ asset('img/about-3.jpg') }}">
-                                    </div>
-                                    <div class="col-6 text-start">
-                                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="{{ asset('img/about-4.jpg') }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- About End -->
-    
-    
-            <!-- Room Start -->
-            <div class="container-xxl py-5">
-                <div class="container">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
-                        <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="room-item shadow rounded overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{ asset('img/room-1.jpg') }}" alt="">
-                                    <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
-                                </div>
-                                <div class="p-4 mt-2">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0">Junior Suite</h5>
-                                        <div class="ps-2">
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mb-3">
-                                        <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                        <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                    </div>
-                                    <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                    <div class="d-flex justify-content-between">
-                                        <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                        <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="room-item shadow rounded overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{ asset('img/room-2.jpg') }}" alt="">
-                                    <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
-                                </div>
-                                <div class="p-4 mt-2">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0">Executive Suite</h5>
-                                        <div class="ps-2">
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mb-3">
-                                        <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                        <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                    </div>
-                                    <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                    <div class="d-flex justify-content-between">
-                                        <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                        <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                            <div class="room-item shadow rounded overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{ asset('img/room-3.jpg') }}" alt="">
-                                    <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
-                                </div>
-                                <div class="p-4 mt-2">
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <h5 class="mb-0">Super Deluxe</h5>
-                                        <div class="ps-2">
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                            <small class="fa fa-star text-primary"></small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mb-3">
-                                        <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                        <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                    </div>
-                                    <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                    <div class="d-flex justify-content-between">
-                                        <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                        <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Room End -->
-    
-    
-            <!-- Video Start -->
-            <div class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
-                <div class="row g-0">
-                    <div class="col-md-6 bg-dark d-flex align-items-center">
-                        <div class="p-5">
-                            <h6 class="section-title text-start text-white text-uppercase mb-3">Luxury Living</h6>
-                            <h1 class="text-white mb-4">Discover A Brand Luxurious Hotel</h1>
-                            <p class="text-white mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Our Rooms</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5">Book A Room</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="video">
-                            <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                                <span></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content rounded-0">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- 16:9 aspect ratio -->
-                            <div class="ratio ratio-16x9">
-                                <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                                    allow="autoplay"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Video Start -->
-    
-    
-            <!-- Service Start -->
-            <div id="service" class="section">
-                <div class="container-xxl py-5">
-                    <div class="container">
-                        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
-                            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
-                        </div>
-                        <div class="row g-4">
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <a class="service-item rounded" href="">
-                                    <div class="service-icon bg-transparent border rounded p-1">
-                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-hotel fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">Rooms & Appartment</h5>
-                                    <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                                <a class="service-item rounded" href="">
-                                    <div class="service-icon bg-transparent border rounded p-1">
-                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-utensils fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">Food & Restaurant</h5>
-                                    <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <a class="service-item rounded" href="">
-                                    <div class="service-icon bg-transparent border rounded p-1">
-                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-spa fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">Spa & Fitness</h5>
-                                    <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                                <a class="service-item rounded" href="">
-                                    <div class="service-icon bg-transparent border rounded p-1">
-                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-swimmer fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">Sports & Gaming</h5>
-                                    <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <a class="service-item rounded" href="">
-                                    <div class="service-icon bg-transparent border rounded p-1">
-                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-glass-cheers fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">Event & Party</h5>
-                                    <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <a class="service-item rounded" href="">
-                                    <div class="service-icon bg-transparent border rounded p-1">
-                                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
-                                            <i class="fa fa-dumbbell fa-2x text-primary"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">GYM & Yoga</h5>
-                                    <p class="text-body mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service End -->
-    
-    
-            <!-- Testimonial Start -->
-            <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
-                <div class="container">
-                    <div class="owl-carousel testimonial-carousel py-5">
-                        <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-1.jpg') }}" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
-                                </div>
-                            </div>
-                            <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                        </div>
-                        <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-2.jpg') }}" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
-                                </div>
-                            </div>
-                            <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                        </div>
-                        <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd et erat magna eos</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/testimonial-3.jpg') }}" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
-                                </div>
-                            </div>
-                            <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Testimonial End -->
-    
-    
-            <!-- Team Start -->
-            <div class="container-xxl py-5">
-                <div class="container">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h6 class="section-title text-center text-primary text-uppercase">Our Team</h6>
-                        <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Staffs</span></h1>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="rounded shadow overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{asset('img/team-1.jpg')}}" alt="">
-                                    <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-center p-4 mt-3">
-                                    <h5 class="fw-bold mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="rounded shadow overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{asset('img/team-2.jpg')}}" alt="">
-                                    <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-center p-4 mt-3">
-                                    <h5 class="fw-bold mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                            <div class="rounded shadow overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{asset('img/team-3.jpg')}}" alt="">
-                                    <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-center p-4 mt-3">
-                                    <h5 class="fw-bold mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                            <div class="rounded shadow overflow-hidden">
-                                <div class="position-relative">
-                                    <img class="img-fluid" src="{{asset('img/team-4.jpg')}}" alt="">
-                                    <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-center p-4 mt-3">
-                                    <h5 class="fw-bold mb-0">Full Name</h5>
-                                    <small>Designation</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Team End -->
-    
-    
-            <!-- Newsletter Start -->
-            <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 border rounded p-1">
-                        <div class="border rounded text-center p-1">
-                            <div class="bg-white rounded text-center p-5">
-                                <h4 class="mb-4">Subscribe Our <span class="text-primary text-uppercase">Newsletter</span></h4>
-                                <div class="position-relative mx-auto" style="max-width: 400px;">
-                                    <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
-                                    <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Newsletter Start -->
-            
-    
-            <!-- Footer Start -->
-            <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-                <div class="container pb-5">
-                    <div class="row g-5">
-                        <div class="col-md-6 col-lg-4">
-                            <div class="bg-primary rounded p-4">
-                                <a href="index.html"><h1 class="text-white text-uppercase mb-3">Hotelier</h1></a>
-                                <p class="text-white mb-0">
-                                    Download <a class="text-dark fw-medium" href="https://htmlcodex.com/hotel-html-template-pro">Hotelier – Premium Version</a>, build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                            <div class="d-flex pt-2">
-                                <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                                <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-12">
-                            <div class="row gy-5 g-4">
-                                <div class="col-md-6">
-                                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-                                    <a class="btn btn-link" href="">About Us</a>
-                                    <a class="btn btn-link" href="">Contact Us</a>
-                                    <a class="btn btn-link" href="">Privacy Policy</a>
-                                    <a class="btn btn-link" href="">Terms & Condition</a>
-                                    <a class="btn btn-link" href="">Support</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-                                    <a class="btn btn-link" href="">Food & Restaurant</a>
-                                    <a class="btn btn-link" href="">Spa & Fitness</a>
-                                    <a class="btn btn-link" href="">Sports & Gaming</a>
-                                    <a class="btn btn-link" href="">Event & Party</a>
-                                    <a class="btn btn-link" href="">GYM & Yoga</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="copyright">
-                        <div class="row">
-                            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                                
-                                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                                <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                            </div>
-                            <div class="col-md-6 text-center text-md-end">
-                                <div class="footer-menu">
-                                    <a href="">Home</a>
-                                    <a href="">Cookies</a>
-                                    <a href="">Help</a>
-                                    <a href="">FQAs</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer End -->
-    
-    
-            <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <!-- End Logo Header -->
+          </div>
+        
+         @include('partials.staff.navigation')
+          
         </div>
-    
+
+        <div class="container">
+          <div class="page-inner">
+            <div
+              class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
+            >
+              <div>
+                <h3 class="fw-bold mb-3">Dashboard</h3>
+                <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
+              </div>
+              <div class="ms-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
+                <a href="#" class="btn btn-primary btn-round">Add Customer</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-primary bubble-shadow-small"
+                        >
+                          <i class="fas fa-users"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Visitors</p>
+                          <h4 class="card-title">1,294</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-info bubble-shadow-small"
+                        >
+                          <i class="fas fa-user-check"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Subscribers</p>
+                          <h4 class="card-title">1303</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-success bubble-shadow-small"
+                        >
+                          <i class="fas fa-luggage-cart"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Sales</p>
+                          <h4 class="card-title">$ 1,345</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                    <div class="row align-items-center">
+                      <div class="col-icon">
+                        <div
+                          class="icon-big text-center icon-secondary bubble-shadow-small"
+                        >
+                          <i class="far fa-check-circle"></i>
+                        </div>
+                      </div>
+                      <div class="col col-stats ms-3 ms-sm-0">
+                        <div class="numbers">
+                          <p class="card-category">Order</p>
+                          <h4 class="card-title">576</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card card-round">
+                  <div class="card-header">
+                    <div class="card-head-row">
+                      <div class="card-title">User Statistics</div>
+                      <div class="card-tools">
+                        <a
+                          href="#"
+                          class="btn btn-label-success btn-round btn-sm me-2"
+                        >
+                          <span class="btn-label">
+                            <i class="fa fa-pencil"></i>
+                          </span>
+                          Export
+                        </a>
+                        <a href="#" class="btn btn-label-info btn-round btn-sm">
+                          <span class="btn-label">
+                            <i class="fa fa-print"></i>
+                          </span>
+                          Print
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-container" style="min-height: 375px">
+                      <canvas id="statisticsChart"></canvas>
+                    </div>
+                    <div id="myChartLegend"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-primary card-round">
+                  <div class="card-header">
+                    <div class="card-head-row">
+                      <div class="card-title">Daily Sales</div>
+                      <div class="card-tools">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-sm btn-label-light dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            Export
+                          </button>
+                          <div
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#"
+                              >Something else here</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-category">March 25 - April 02</div>
+                  </div>
+                  <div class="card-body pb-0">
+                    <div class="mb-4 mt-2">
+                      <h1>$4,578.58</h1>
+                    </div>
+                    <div class="pull-in">
+                      <canvas id="dailySalesChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="card card-round">
+                  <div class="card-body pb-0">
+                    <div class="h1 fw-bold float-end text-primary">+5%</div>
+                    <h2 class="mb-2">17</h2>
+                    <p class="text-muted">Users online</p>
+                    <div class="pull-in sparkline-fix">
+                      <div id="lineChart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card card-round">
+                  <div class="card-header">
+                    <div class="card-head-row card-tools-still-right">
+                      <h4 class="card-title">Users Geolocation</h4>
+                      <div class="card-tools">
+                        <button
+                          class="btn btn-icon btn-link btn-primary btn-xs"
+                        >
+                          <span class="fa fa-angle-down"></span>
+                        </button>
+                        <button
+                          class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"
+                        >
+                          <span class="fa fa-sync-alt"></span>
+                        </button>
+                        <button
+                          class="btn btn-icon btn-link btn-primary btn-xs"
+                        >
+                          <span class="fa fa-times"></span>
+                        </button>
+                      </div>
+                    </div>
+                    <p class="card-category">
+                      Map of the distribution of users around the world
+                    </p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="table-responsive table-hover table-sales">
+                          <table class="table">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div class="flag">
+                                    <img
+                                      src="{{asset('admin/img/flags/id.png')}}"
+                                      alt="indonesia"
+                                    />
+                                  </div>
+                                </td>
+                                <td>Indonesia</td>
+                                <td class="text-end">2.320</td>
+                                <td class="text-end">42.18%</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="flag">
+                                    <img
+                                      src="{{asset('admin/img/flags/us.png')}}"
+                                      alt="united states"
+                                    />
+                                  </div>
+                                </td>
+                                <td>USA</td>
+                                <td class="text-end">240</td>
+                                <td class="text-end">4.36%</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="flag">
+                                    <img
+                                      src="{{asset('admin/img/flags/au.png')}}"
+                                      alt="australia"
+                                    />
+                                  </div>
+                                </td>
+                                <td>Australia</td>
+                                <td class="text-end">119</td>
+                                <td class="text-end">2.16%</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="flag">
+                                    <img
+                                      src="{{asset('admin/img/flags/ru.png')}}"
+                                      alt="russia"
+                                    />
+                                  </div>
+                                </td>
+                                <td>Russia</td>
+                                <td class="text-end">1.081</td>
+                                <td class="text-end">19.65%</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="flag">
+                                    <img
+                                      src="{{asset('admin/img/flags/cn.png')}}"
+                                      alt="china"
+                                    />
+                                  </div>
+                                </td>
+                                <td>China</td>
+                                <td class="text-end">1.100</td>
+                                <td class="text-end">20%</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <div class="flag">
+                                    <img
+                                      src="{{asset('admin/img/flags/br.png')}}"
+                                      alt="brazil"
+                                    />
+                                  </div>
+                                </td>
+                                <td>Brasil</td>
+                                <td class="text-end">640</td>
+                                <td class="text-end">11.63%</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mapcontainer">
+                          <div
+                            id="world-map"
+                            class="w-100"
+                            style="height: 300px"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card card-round">
+                  <div class="card-body">
+                    <div class="card-head-row card-tools-still-right">
+                      <div class="card-title">New Customers</div>
+                      <div class="card-tools">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-icon btn-clean me-0"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i class="fas fa-ellipsis-h"></i>
+                          </button>
+                          <div
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#"
+                              >Something else here</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-list py-4">
+                      <div class="item-list">
+                        <div class="avatar">
+                          <img
+                            src="{{asset('admin/img/jm_denis.jpg')}}"
+                            alt="..."
+                            class="avatar-img rounded-circle"
+                          />
+                        </div>
+                        <div class="info-user ms-3">
+                          <div class="username">Jimmy Denis</div>
+                          <div class="status">Graphic Designer</div>
+                        </div>
+                        <button class="btn btn-icon btn-link op-8 me-1">
+                          <i class="far fa-envelope"></i>
+                        </button>
+                        <button class="btn btn-icon btn-link btn-danger op-8">
+                          <i class="fas fa-ban"></i>
+                        </button>
+                      </div>
+                      <div class="item-list">
+                        <div class="avatar">
+                          <span
+                            class="avatar-title rounded-circle border border-white"
+                            >CF</span
+                          >
+                        </div>
+                        <div class="info-user ms-3">
+                          <div class="username">Chandra Felix</div>
+                          <div class="status">Sales Promotion</div>
+                        </div>
+                        <button class="btn btn-icon btn-link op-8 me-1">
+                          <i class="far fa-envelope"></i>
+                        </button>
+                        <button class="btn btn-icon btn-link btn-danger op-8">
+                          <i class="fas fa-ban"></i>
+                        </button>
+                      </div>
+                      <div class="item-list">
+                        <div class="avatar">
+                          <img
+                            src="{{asset('admin/img/talha.jpg')}}"
+                            alt="..."
+                            class="avatar-img rounded-circle"
+                          />
+                        </div>
+                        <div class="info-user ms-3">
+                          <div class="username">Talha</div>
+                          <div class="status">Front End Designer</div>
+                        </div>
+                        <button class="btn btn-icon btn-link op-8 me-1">
+                          <i class="far fa-envelope"></i>
+                        </button>
+                        <button class="btn btn-icon btn-link btn-danger op-8">
+                          <i class="fas fa-ban"></i>
+                        </button>
+                      </div>
+                      <div class="item-list">
+                        <div class="avatar">
+                          <img
+                            src="{{asset('admin/img/chadengle.jpg')}}"
+                            alt="..."
+                            class="avatar-img rounded-circle"
+                          />
+                        </div>
+                        <div class="info-user ms-3">
+                          <div class="username">Chad</div>
+                          <div class="status">CEO Zeleaf</div>
+                        </div>
+                        <button class="btn btn-icon btn-link op-8 me-1">
+                          <i class="far fa-envelope"></i>
+                        </button>
+                        <button class="btn btn-icon btn-link btn-danger op-8">
+                          <i class="fas fa-ban"></i>
+                        </button>
+                      </div>
+                      <div class="item-list">
+                        <div class="avatar">
+                          <span
+                            class="avatar-title rounded-circle border border-white bg-primary"
+                            >H</span
+                          >
+                        </div>
+                        <div class="info-user ms-3">
+                          <div class="username">Hizrian</div>
+                          <div class="status">Web Designer</div>
+                        </div>
+                        <button class="btn btn-icon btn-link op-8 me-1">
+                          <i class="far fa-envelope"></i>
+                        </button>
+                        <button class="btn btn-icon btn-link btn-danger op-8">
+                          <i class="fas fa-ban"></i>
+                        </button>
+                      </div>
+                      <div class="item-list">
+                        <div class="avatar">
+                          <span
+                            class="avatar-title rounded-circle border border-white bg-secondary"
+                            >F</span
+                          >
+                        </div>
+                        <div class="info-user ms-3">
+                          <div class="username">Farrah</div>
+                          <div class="status">Marketing</div>
+                        </div>
+                        <button class="btn btn-icon btn-link op-8 me-1">
+                          <i class="far fa-envelope"></i>
+                        </button>
+                        <button class="btn btn-icon btn-link btn-danger op-8">
+                          <i class="fas fa-ban"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card card-round">
+                  <div class="card-header">
+                    <div class="card-head-row card-tools-still-right">
+                      <div class="card-title">Transaction History</div>
+                      <div class="card-tools">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-icon btn-clean me-0"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i class="fas fa-ellipsis-h"></i>
+                          </button>
+                          <div
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#"
+                              >Something else here</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <!-- Projects table -->
+                      <table class="table align-items-center mb-0">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Payment Number</th>
+                            <th scope="col" class="text-end">Date & Time</th>
+                            <th scope="col" class="text-end">Amount</th>
+                            <th scope="col" class="text-end">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              <button
+                                class="btn btn-icon btn-round btn-success btn-sm me-2"
+                              >
+                                <i class="fa fa-check"></i>
+                              </button>
+                              Payment from #10231
+                            </th>
+                            <td class="text-end">Mar 19, 2020, 2.45pm</td>
+                            <td class="text-end">$250.00</td>
+                            <td class="text-end">
+                              <span class="badge badge-success">Completed</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        @include('partials.admin.footer')
+        
+      </div>
+    </div>
 @endsection
