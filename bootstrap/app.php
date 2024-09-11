@@ -26,9 +26,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->group('auth', [ Authenticate::class, ]);
 
         // Middleware aliases
-        $middleware->alias([ 'auth:customer' => Authenticate::class,]);
-        $middleware->alias([ 'auth:staff' => Authenticate::class,]);
-        $middleware->alias([ 'auth:admin' => Authenticate::class,]);
+        $middleware->alias([
+            'auth:customer' => Authenticate::class,
+            'auth:staff' => Authenticate::class,
+            'auth:admin' => Authenticate::class,
+        ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

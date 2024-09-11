@@ -137,7 +137,7 @@
             <div class="collapse" id="submenu4">
               <ul class="nav nav-collapse">
                 <li>
-                    <a href="#"> <span class="sub-item">View Profile</span></a>
+                    <a href="{{route('admin.view-staff-list')}}"> <span class="sub-item">Staff List</span></a>
                 </li>
                 <li>
                     <a href="#"> <span class="sub-item">Roles and Permissions</span></a>

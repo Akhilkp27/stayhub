@@ -13,4 +13,8 @@ class AdminController extends Controller
         $admin = Auth::guard('admin')->user();
         return view('admin.dashboard', compact('admin'));
     }
+    public function viewStaffList()
+    {
+        return view('admin.staff-management.staff-list');
+    }
 }
