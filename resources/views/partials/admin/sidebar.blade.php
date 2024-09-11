@@ -28,7 +28,7 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
       <div class="sidebar-content">
         <ul class="nav nav-secondary">
-          <li class="nav-item active">
+          <li class="nav-item {{ request()->is('admin/dashboard') ? 'active' : ''}}">
             <a
               data-bs-toggle="collapse"
               href="#dashboard"
@@ -128,7 +128,7 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ request()->is('admin/staff-list') ? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu4">
               <i class="fas fa-user-tie"></i>
               <p>Staff Management</p>
