@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('staffs', function (Blueprint $table) {
             $table->id();
             $table->string('first_name', 100);
-            $table->string('last_name', 100);
+            $table->string('last_name', 100)->nullable();
             $table->string('email', 255)->unique();
             $table->string('phone', 20)->nullable();
             $table->foreignId('role')->constrained('user_permissions')->onUpdate('cascade')->onDelete('cascade');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->decimal('salary', 10, 2)->nullable();
             $table->enum('status', ['active', 'inactive', 'on_leave'])->default('active');
-            $table->string('image_url', 255);
+            $table->string('image_url', 255)->nullable();
             $table->timestamps();
         });
     }

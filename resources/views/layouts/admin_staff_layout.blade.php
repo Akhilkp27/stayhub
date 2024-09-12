@@ -5,7 +5,8 @@
     <title>StayHub - The booking adviser</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
     <link rel="icon" href="{{ asset('img/icons/stayhub.png') }}" type="image/png">
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Fonts and icons -->
     <script src="{{asset('admin/js/plugin/webfont/webfont.min.js')}}"></script>
     <script>
