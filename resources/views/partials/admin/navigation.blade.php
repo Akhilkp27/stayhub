@@ -306,7 +306,7 @@
             </div>
             <span class="profile-username">
               <span class="op-7">Hi,</span>
-              <span class="fw-bold">Hizrian</span>
+              <span class="fw-bold">{{$admin->first_name}}</span>
             </span>
           </a>
           <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -321,8 +321,8 @@
                     />
                   </div>
                   <div class="u-text">
-                    <h4>Hizrian</h4>
-                    <p class="text-muted">hello@example.com</p>
+                    <h4>{{$admin->first_name}} {{$admin->last_name}}</h4>
+                    <p class="text-muted">Admin</p>
                     
                   </div>
                 </div>
