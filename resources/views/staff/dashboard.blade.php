@@ -7,7 +7,7 @@
      @include('partials.staff.sidebar')
 
       <div class="main-panel">
-        <div class="main-header">
+        {{-- <div class="main-header">
           <div class="main-header-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
@@ -31,7 +31,8 @@
         
          @include('partials.staff.navigation')
           
-        </div>
+        </div> --}}
+        @include('partials.staff.header')
 
         <div class="container">
           <div class="page-inner">

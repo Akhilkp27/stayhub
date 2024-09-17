@@ -138,5 +138,6 @@ return [
     // Other aliases...
     'Route' => Illuminate\Support\Facades\Route::class,
     'StaffHelper' => App\Facades\StaffHelperFacade::class,
+    'UtilityHelper' => App\Facades\UtilityHelperFacade::class,
 ],
 ];

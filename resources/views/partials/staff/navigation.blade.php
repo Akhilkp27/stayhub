@@ -1,5 +1,13 @@
 
 <!-- Navbar Header -->
+@php
+// Retrieve user ID and guard from session
+$userId = session('user_id');
+$userGuard = session('guard');
+
+// Fetch user details using CommonHelper::getUserDetailsById method
+$userDetails = UtilityHelper::getUserDetailsById($userId, $userGuard);
+@endphp
 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
     <div class="container-fluid">
       <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
@@ -307,7 +315,7 @@
             </div>
             <span class="profile-username">
               <span class="op-7">Hi,</span>
-              <span class="fw-bold">{{$staff->first_name}}</span>
+              <span class="fw-bold">{{ $userDetails->first_name }}</span>
             </span>
           </a>
           <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -322,7 +330,7 @@
                     />
                   </div>
                   <div class="u-text">
-                    <h4>{{$staff->first_name}} {{$staff->last_name}}</h4>
+                    <h4>{{ $userDetails->first_name }} {{ $userDetails->last_name }}</h4>
                     @php
                         $roleId = $staff->role;
                         $roleName = StaffHelper::getStaffRoleByRoleId($roleId);   

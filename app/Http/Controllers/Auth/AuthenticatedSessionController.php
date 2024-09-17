@@ -34,6 +34,12 @@ class AuthenticatedSessionController extends Controller
                 Auth::guard($guard)->login(Auth::guard($guard)->user());
 
                 $request->session()->regenerate();
+                 // Get the authenticated user
+                $user = Auth::guard($guard)->user();
+                session([
+                    'user_id' => $user->id,
+                    'guard' => $guard, 
+                ]);
 
                 $redirectTo = match ($guard) {
                     'admin' => route('admin.dashboard'),

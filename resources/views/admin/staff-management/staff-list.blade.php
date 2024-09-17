@@ -11,7 +11,8 @@
        @include('partials.admin.sidebar')
 
       <div class="main-panel">
-         @include('partials.admin.header')
+        
+       @include('partials.admin.header')
 
          <div class="container">
           <div class="page-inner">
