@@ -23,18 +23,28 @@ class AdminController extends Controller
     }
     public function addNewStaff(Request $request)
     {
-        dd($request->all());
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('staff_images', 'public');
+        }
+    
+        $salary = preg_replace('/[^\d.]/', '', $request->salary);
+        
+    
         $staff = Staff::create([
             'first_name' => $request->firstName,
             'last_name' => $request->lastName,
             'email' => $request->email,
-            'phone_number' => $request->phone,
+            'phone' => $request->phone,
             'role' => $request->role,
             'username' => $request->firstName,  
-            'salary' => $request->salary,
+            'salary' => $salary,
             'start_date' => $request->startDate,
             'address' => $request->address,
             'password' => Hash::make('staff@123'),
+            'image_url' => $imagePath,
         ]);
+        return redirect()->route('admin.view-staff-list')->with('success', 'Staff added successfully');
     }
 }

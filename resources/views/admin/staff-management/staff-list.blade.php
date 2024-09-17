@@ -282,17 +282,16 @@
        });
 
        function formatCurrency(input) {
-        let value = input.value;
+          let value = input.value;
           value = value.replace(/[^\d.]/g, '');
           if (!isNaN(value) && value !== '') {
               value = parseFloat(value).toLocaleString('en-IN', {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 0
+                  maximumFractionDigits: 2
               });
               input.value = value;
           } else {
               input.value = '';
           }
-        }
+      }
     </script>
 @endsection
