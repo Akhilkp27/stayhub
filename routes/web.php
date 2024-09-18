@@ -24,6 +24,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/staff-list', [AdminController::class, 'viewStaffList'])->name('view-staff-list');
     Route::post('/add-new-staff-', [AdminController::class, 'addNewStaff'])->name('add-new-staff');
+    Route::get('/edit-staff-modal', [AdminController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
 });
 
 Route::middleware('auth:staff')->prefix('staff')->name('staff.')->group(function () {

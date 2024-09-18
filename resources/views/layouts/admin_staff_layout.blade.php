@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/css/kaiadmin.min.css') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.0/sweetalert2.css" integrity="sha512-Gebe6n4xsNr0dWAiRsMbjWOYe1PPVar2zBKIyeUQKPeafXZ61sjU2XCW66JxIPbDdEH3oQspEoWX8PQRhaKyBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   </head>
   <body>
@@ -65,7 +65,8 @@
  
      <!-- Sweet Alert -->
      <script src="{{ asset('admin/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
- 
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.0/sweetalert2.min.js" integrity="sha512-OlF0YFB8FRtvtNaGojDXbPT7LgcsSB3hj0IZKaVjzFix+BReDmTWhntaXBup8qwwoHrTHvwTxhLeoUqrYY9SEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <!-- Kaiadmin JS -->
      <script src="{{ asset('admin/js/kaiadmin.min.js') }}"></script>
  

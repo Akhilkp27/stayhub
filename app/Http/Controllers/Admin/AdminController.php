@@ -19,7 +19,9 @@ class AdminController extends Controller
     public function viewStaffList()
     {
         $role = UserPermission::all();
-        return view('admin.staff-management.staff-list',compact('role'));
+        // $staffDetails = Staff::all();
+        $staffDetails = Staff::orderBy('created_at', 'desc')->get();
+        return view('admin.staff-management.staff-list',compact('role', 'staffDetails'));
     }
     public function addNewStaff(Request $request)
     {
@@ -46,5 +48,17 @@ class AdminController extends Controller
             'image_url' => $imagePath,
         ]);
         return redirect()->route('admin.view-staff-list')->with('success', 'Staff added successfully');
+    }
+
+    public function getStaffDataForEdit(Request $request)
+    {
+       $staffId = $request->input('id');
+       $staffData = Staff ::where('id', $staffId)->first();
+       $role = UserPermission::all();
+       $html = view('admin.staff-management.staff-edit-modal', [ 'data' => $staffData, 'role'=>$role])->render();
+
+        return response()->json($html);
+
+    //    dd($staffData);
     }
 }

@@ -10,7 +10,7 @@ class Staff extends Authenticatable
 {
     use HasFactory;
     protected $table = 'staffs';
-
+    public $timestamps = true;
     protected $fillable = [
         'first_name',
         'last_name',
