@@ -1,5 +1,7 @@
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{route('admin.update-staff')}}" method="post" enctype="multipart/form-data">
     @csrf
+    @method('put')
+    <input type="text" value="{{$data->id}}" name="staffId" id="staffId" hidden>
     <div class="card-body">
         <div class="row mb-3">
             <img src="{{ asset('storage/' . $data->image_url) }}" alt="Staff Image" class="img-fluid" style="max-width: 150px;">

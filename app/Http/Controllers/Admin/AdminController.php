@@ -59,6 +59,27 @@ class AdminController extends Controller
 
         return response()->json($html);
 
-    //    dd($staffData);
+    }
+
+    public function updateStaffData(Request $request)
+    {
+       
+        $staff = Staff::findOrFail($request->staffId);
+        $salary = preg_replace('/[^\d.]/', '', $request->salary);
+        $staff->first_name = $request->firstName;
+        $staff->last_name = $request->lastName;
+        $staff->email = $request->email;
+        $staff->phone = $request->phone;
+        $staff->role = $request->role;
+        $staff->salary = $salary;
+        $staff->status = $request->status;
+        $staff->start_date = $request->startDate;
+        $staff->address = $request->address;
+        $staff->save();
+        return redirect()->route('admin.view-staff-list')->with('success', 'Staff member updated successfully!');
+    }
+    public function viewRoleList()
+    {
+        return view('admin.staff-management.role-and-permission');
     }
 }

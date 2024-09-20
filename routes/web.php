@@ -21,10 +21,18 @@ Route::get('/', function () {
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/staff-list', [AdminController::class, 'viewStaffList'])->name('view-staff-list');
-    Route::post('/add-new-staff-', [AdminController::class, 'addNewStaff'])->name('add-new-staff');
-    Route::get('/edit-staff-modal', [AdminController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
+    
+    //staff-management
+    Route::prefix('staff-management')->group(function () {
+        Route::get('/staff-list', [AdminController::class, 'viewStaffList'])->name('view-staff-list');
+        Route::post('/add-new-staff', [AdminController::class, 'addNewStaff'])->name('add-new-staff');
+        Route::get('/edit-staff-modal', [AdminController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
+        Route::put('/update-staff', [AdminController::class, 'updateStaffData'])->name('update-staff');
+        Route::get('/role-list', [AdminController::class, 'viewRoleList'])->name('view-role-list');
+    });
+    
 });
 
 Route::middleware('auth:staff')->prefix('staff')->name('staff.')->group(function () {

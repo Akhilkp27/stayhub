@@ -140,7 +140,7 @@
                     <a href="{{route('admin.view-staff-list')}}"> <span class="sub-item">Staff List</span></a>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Roles and Permissions</span></a>
+                    <a href="{{route('admin.view-role-list')}}"> <span class="sub-item">Roles and Permissions</span></a>
                 </li>
                 <li>
                     <a href="#"> <span class="sub-item">Activity Log</span></a>
