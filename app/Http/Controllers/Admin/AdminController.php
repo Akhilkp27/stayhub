@@ -82,4 +82,9 @@ class AdminController extends Controller
     {
         return view('admin.staff-management.role-and-permission');
     }
+
+    public function viewActivityLog()
+    {
+        return view('admin.staff-management.activity-log');
+    }
 }

@@ -5,7 +5,7 @@
       <div class="logo-header" data-background-color="dark">
         <a href="index.html" class="logo">
           <img
-            src="assets/img/kaiadmin/logo_light.svg"
+            src=""
             alt="navbar brand"
             class="navbar-brand"
             height="20"
@@ -128,7 +128,7 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item {{ request()->is('admin/staff-list') ? 'active' : ''}}">
+          <li class="nav-item {{ request()->is('admin/staff-management/staff-list') || request()->is('admin/staff-management/role-list') || request()->is('admin/staff-management/activity-log') ? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu4">
               <i class="fas fa-user-tie"></i>
               <p>Staff Management</p>
@@ -143,7 +143,7 @@
                     <a href="{{route('admin.view-role-list')}}"> <span class="sub-item">Roles and Permissions</span></a>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Activity Log</span></a>
+                    <a href="{{route('admin.view-activity-log')}}"> <span class="sub-item">Activity Log</span></a>
                 </li>
                
               </ul>

@@ -31,6 +31,11 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/edit-staff-modal', [AdminController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
         Route::put('/update-staff', [AdminController::class, 'updateStaffData'])->name('update-staff');
         Route::get('/role-list', [AdminController::class, 'viewRoleList'])->name('view-role-list');
+        Route::get('/activity-log', [AdminController::class, 'viewActivityLog'])->name('view-activity-log');
+    });
+
+    //room-management
+    Route::prefix('room-management')->group(function () {
     });
     
 });
