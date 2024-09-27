@@ -75,7 +75,7 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') ? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu2">
               <i class="fas fa-hotel"></i>
               <p>Room Management</p>
@@ -87,7 +87,7 @@
                     <a href="#"> <span class="sub-item">Room List</span></a>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Room Type</span></a>
+                    <a href="{{route('admin.add-room-type')}}"> <span class="sub-item">Room Type</span></a>
                 </li>
                 <li>
                     <a href="#"> <span class="sub-item">Room Status</span></a>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\StaffManagementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\ProfileController;
@@ -26,16 +28,17 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     
     //staff-management
     Route::prefix('staff-management')->group(function () {
-        Route::get('/staff-list', [AdminController::class, 'viewStaffList'])->name('view-staff-list');
-        Route::post('/add-new-staff', [AdminController::class, 'addNewStaff'])->name('add-new-staff');
-        Route::get('/edit-staff-modal', [AdminController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
-        Route::put('/update-staff', [AdminController::class, 'updateStaffData'])->name('update-staff');
-        Route::get('/role-list', [AdminController::class, 'viewRoleList'])->name('view-role-list');
-        Route::get('/activity-log', [AdminController::class, 'viewActivityLog'])->name('view-activity-log');
+        Route::get('/staff-list', [StaffManagementController::class, 'viewStaffList'])->name('view-staff-list');
+        Route::post('/add-new-staff', [StaffManagementController::class, 'addNewStaff'])->name('add-new-staff');
+        Route::get('/edit-staff-modal', [StaffManagementController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
+        Route::put('/update-staff', [StaffManagementController::class, 'updateStaffData'])->name('update-staff');
+        Route::get('/role-list', [StaffManagementController::class, 'viewRoleList'])->name('view-role-list');
+        Route::get('/activity-log', [StaffManagementController::class, 'viewActivityLog'])->name('view-activity-log');
     });
 
     //room-management
     Route::prefix('room-management')->group(function () {
+        Route::get('/add-room-type', [RoomController::class, 'viewAddRoomType'])->name('add-room-type');
     });
     
 });
