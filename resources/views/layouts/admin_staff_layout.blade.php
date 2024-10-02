@@ -5,9 +5,8 @@
     <title>StayHub - The booking adviser</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
     <link rel="icon" href="{{ asset('img/icons/stayhub.png') }}" type="image/png">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-     <script src="{{ asset('admin/js/core/jquery-3.7.1.min.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      
     <!-- Fonts and icons -->
     <script src="{{asset('admin/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -34,13 +33,16 @@
     <link rel="stylesheet" href="{{ asset('admin/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/css/kaiadmin.min.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.0/sweetalert2.css" integrity="sha512-Gebe6n4xsNr0dWAiRsMbjWOYe1PPVar2zBKIyeUQKPeafXZ61sjU2XCW66JxIPbDdEH3oQspEoWX8PQRhaKyBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.min.css" rel="stylesheet">
+    
    
   </head>
   <body>
     @yield('content')
      <!--   Core JS Files   -->
-     {{-- <script src="{{ asset('admin/js/core/jquery-3.7.1.min.js') }}"></script> --}}
+    
      <script src="{{ asset('admin/js/core/popper.min.js') }}"></script>
      <script src="{{ asset('admin/js/core/bootstrap.min.js') }}"></script>
  
@@ -67,11 +69,12 @@
      <script src="{{ asset('admin/js/plugin/jsvectormap/world.js') }}"></script>
  
      <!-- Sweet Alert -->
-     <script src="{{ asset('admin/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
+     {{-- <script src="{{ asset('admin/js/plugin/sweetalert/sweetalert.min.js') }}"></script> --}}
      
      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.0/sweetalert2.min.js" integrity="sha512-OlF0YFB8FRtvtNaGojDXbPT7LgcsSB3hj0IZKaVjzFix+BReDmTWhntaXBup8qwwoHrTHvwTxhLeoUqrYY9SEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
-
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.min.js"></script>
      <!-- Kaiadmin JS -->
      <script src="{{ asset('admin/js/kaiadmin.min.js') }}"></script>
  

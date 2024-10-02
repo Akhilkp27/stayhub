@@ -39,6 +39,11 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     //room-management
     Route::prefix('room-management')->group(function () {
         Route::get('/add-room-type', [RoomController::class, 'viewAddRoomType'])->name('add-room-type');
+        Route::post('/store-room-type',[RoomController::class, 'storeRoomType'])->name('store-room-type');
+        Route::get('/get-room-type',[RoomController::class, 'getRoomType'])->name('get-room-type');
+        Route::get('/check-room-type-exists',[RoomController::class,'checkRoomTypeExists'])->name('check-room-type-exists');
+        Route::get('/get-room-type-for-edit', [RoomController::class, 'getRoomTypeForEdit'])->name('get-room-type-for-edit');
+        Route::post('/update-room-type', [RoomController::class, 'updateRoomType'])->name('update-room-type');
     });
     
 });
