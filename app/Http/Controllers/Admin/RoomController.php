@@ -31,7 +31,7 @@ class RoomController extends Controller
 
     public function getRoomType(Request $request)
     {
-        $roomTypes = RoomType::all();
+        $roomTypes = RoomType::orderBy('created_at', 'desc')->get();
         return response()->json($roomTypes);
     }
 
@@ -51,6 +51,33 @@ class RoomController extends Controller
     public function updateRoomType(Request $request)
     {
         $roomTypeId = $request->input('roomTypeId');
-        dd($roomTypeId);
+        $roomType = $request->input('roomType');  
+        $totalRooms = $request->input('totalRooms');  
+        $availableRooms = $request->input('availableRooms');
+        $description = $request->input('description');
+        $update = RoomType::where('id',$roomTypeId)
+                ->update([
+                    'type_name'  => $roomType, 
+                    'total_rooms'  => $totalRooms,
+                    'available_rooms'  => $totalRooms,
+                    'description'  => $description,
+                ]);
+
+        return response()->json(['success' => true, 'message' => 'Room type details updated.']);
+    }
+    public function deleteRoomType($id)
+    {
+        $roomType = RoomType::find($id);
+        if (!$roomType) {
+            return response()->json(['success' => false, 'message' => 'Room Type not found'], 404);
+        }
+    
+        $deleted = $roomType->delete();
+    
+        if ($deleted) {
+            return response()->json(['success' => true, 'message' => 'Room Type deleted successfully'], 200);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Failed to delete Room Type'], 500);
+        }
     }
 }

@@ -143,7 +143,7 @@
       </div>
       <!-- Modal Body -->
       <div class="modal-body">
-        <form id="addRoomType" action="" method="post" enctype="multipart/form-data">
+        <form id="editRoomTypeForm" action="{{route('admin.update-room-type')}}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
               <div class="row mb-3">
@@ -173,6 +173,7 @@
           </div>
           </div>
           <div class="modal-footer">
+            <input type="text" id="roomTypeId" hidden>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" id="saveBtn"  class="btn btn-success">Update</button>
           </div>
@@ -186,6 +187,11 @@
     <script>
       $(document).ready(function() {
         $('#editDescription').summernote({
+            height: 200,   // Set the height of the editor
+                minHeight: 200, // Set minimum height
+                maxHeight: 500  // Set maximum height
+      });
+      $('#description').summernote({
             height: 200,   // Set the height of the editor
                 minHeight: 200, // Set minimum height
                 maxHeight: 500  // Set maximum height
@@ -247,6 +253,36 @@
                   }
               });
           });
+
+           // Edit Room Type Form Submission
+           $('#editRoomTypeForm').on('submit', function(e) {
+              e.preventDefault(); 
+              var roomTypeId = $('#roomTypeId').val();
+              console.log(roomTypeId);
+              
+              var url = $(this).attr('action');
+              var method = $(this).attr('method');
+              var formData = $(this).serialize(); 
+          
+              $.ajax({
+                  url: url, 
+                  type: method,
+                  data: formData + '&roomTypeId=' + roomTypeId,
+                  success: function(response) {
+                      if (response.success === true) {
+                          toastr.success(response.message);
+                          $('#add-row').DataTable().ajax.reload(null, false); 
+                          $('#addRoomType')[0].reset(); 
+                          $('#editRoomTypeModal').modal('hide'); 
+                      } else {
+                          toastr.error('Something went wrong. Please try again.');
+                      }
+                  },
+                  error: function(xhr, status, error) {
+                      toastr.error('An error occurred during the request.');
+                  }
+              });
+          });
       
       });
       
@@ -275,13 +311,14 @@
       // Function to handle room type edit
       function editRoomType(id) {
           var roomTypeId = id;
-          console.log('Editing Room Type ID:', roomTypeId);
+          
           $.ajax({
               url: "{{route('admin.get-room-type-for-edit')}}", 
               type: "GET",
               data: { roomTypeId: roomTypeId },
               success: function(response) {
                 console.log(response);
+                $('#roomTypeId').val(response.data.id);
                 $('#editRoomType').val(response.data.type_name);
                 $('#editTotalRooms').val(response.data.total_rooms);
                 $('#availableRooms').val(response.data.available_rooms);
@@ -292,7 +329,42 @@
                   toastr.error('An error occurred during the request.');
               }
           });
-          
+      }
+
+      function deleteRoomType(id){
+        var roomTypeId = id;
+        var url = "{{route('admin.delete-room-type',':id')}}";
+        var newUrl = url.replace(':id', roomTypeId )
+        Swal.fire({
+        title: "Do you want to delete ?",
+        // showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: `Don't save`
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+              url: newUrl, 
+              type: "DELETE",
+              data: {
+                    _token: "{{ csrf_token() }}" // Include CSRF token for DELETE requests
+                },
+              success: function(response) {
+                Swal.fire("Deleted!", "", "success");
+                $('#add-row').DataTable().ajax.reload(null, false); 
+              },
+              error: function(xhr, status, error) {
+                  toastr.error('An error occurred during the request.');
+              }
+          });
+
+            
+        } else if (result.isDenied) {
+            Swal.fire("Changes are not saved", "", "info");
+        }
+        });
+        
       }
       </script>
       

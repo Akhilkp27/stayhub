@@ -44,6 +44,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/check-room-type-exists',[RoomController::class,'checkRoomTypeExists'])->name('check-room-type-exists');
         Route::get('/get-room-type-for-edit', [RoomController::class, 'getRoomTypeForEdit'])->name('get-room-type-for-edit');
         Route::post('/update-room-type', [RoomController::class, 'updateRoomType'])->name('update-room-type');
+        Route::delete('/delete-room-type/{id}', [RoomController::class, 'deleteRoomType'])->name('delete-room-type');
     });
     
 });
