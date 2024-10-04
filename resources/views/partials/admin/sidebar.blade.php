@@ -75,7 +75,7 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') ? 'active' : ''}}">
+          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') || request()->is('admin/room-management/room-amenities')  ? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu2">
               <i class="fas fa-hotel"></i>
               <p>Room Management</p>
@@ -96,7 +96,17 @@
                     <a href="#"> <span class="sub-item">Room Availability</span></a>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Room Amineties</span></a>
+                    <a  data-bs-toggle="collapse" href="#submenu2-1" > <span class="sub-item">Room Amenities</span><span class="caret"></span></a>
+                      <div class="collapse" id="submenu2-1">
+                        <ul style="list-style-type: none;">
+                          <li>
+                              <a href="{{route('admin.view-room-amenities')}}"> <span class="sub-item">Amenities List</span></a>
+                          </li>
+                          <li>
+                              <a href=""> <span class="sub-item">Room Amenity Update</span></a>
+                          </li>
+                        </ul>
+                      </div>
                 </li>
                 <li>
                     <a href="#"> <span class="sub-item">Room Images</span></a>

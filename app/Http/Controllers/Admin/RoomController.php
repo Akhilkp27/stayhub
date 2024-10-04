@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Room\Amenity;
 use App\Models\Admin\Room\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB; 
 
 class RoomController extends Controller
 {
@@ -34,18 +37,36 @@ class RoomController extends Controller
         $roomTypes = RoomType::orderBy('created_at', 'desc')->get();
         return response()->json($roomTypes);
     }
-
-    public function checkRoomTypeExists(Request $request)
+  
+    public function checkIfExists(Request $request)
     {
-        $roomType = $request->input('roomTypes');
-        $roomTypeExists = RoomType::where('type_name', $roomType)->exists();
-        return response()->json(['exists' => $roomTypeExists]);
+        $table = $request->input('table');
+        $column = $request->input('column');
+        $value = $request->input('value');
+    
+        if (!Schema::hasTable($table)) {
+            return response()->json(['error' => 'Table does not exist'], 400);
+        }
+    
+        if (!Schema::hasColumn($table, $column)) {
+            return response()->json(['error' => 'Column does not exist'], 400);
+        }
+    
+        $exists = DB::table($table)->where($column, $value)->exists();
+    
+        return response()->json(['exists' => $exists]);
     }
-
-    public function getRoomTypeForEdit(Request $request)
+    public function getDataForEdit(Request $request)
     {
-        $roomTypeId = $request->input('roomTypeId');
-        $data = RoomType::where('id', $roomTypeId )->first();
+        $table = $request->input('table');
+        $id = $request->input('value');
+    
+        if (!Schema::hasTable($table)) {
+            return response()->json(['error' => 'Table does not exist'], 400);
+        }
+    
+        $data = DB::table($table)->where('id', $id)->first();
+    
         return response()->json(['data' => $data]);
     }
     public function updateRoomType(Request $request)
@@ -79,5 +100,71 @@ class RoomController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => 'Failed to delete Room Type'], 500);
         }
+    }
+
+    public function viewRoomAmenities()
+    {
+        return view('admin.room-management.add-amenities');
+    }
+    public function storeAmenity(Request $request)
+    {  
+        try {
+            // Validate the incoming request data
+            $request->validate([
+                'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Optional icon validation
+            ]);
+
+            $imagePath = null;
+
+            
+            if ($request->hasFile('icon')) {
+                $image = $request->file('icon');
+                $imagePath = $image->store('amenity_images', 'public'); 
+            }
+
+            
+            $amenityName = $request->input('amenityName');
+            $description = $request->input('description');
+
+            
+            $amenity = Amenity::create([
+                'name' => $amenityName,
+                'description' => $description,
+                'image_url' => $imagePath 
+            ]);
+
+            // Return a success response
+            return response()->json(['success' => true, 'message' => 'Amenity saved successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to save amenity: ' . $e->getMessage()], 500);
+        }
+    }
+    public function getAmenity(Request $request)
+    {
+        $amenity = Amenity::orderBy('created_at', 'desc')->get();
+        return response()->json($amenity);
+    }
+    public function updateAmenity(Request $request)
+    {
+        $amenityId = $request->input('amenityId');
+        $amenityName = $request->input('amenityName');
+        $description = $request->input('description');
+        $previousImage = $request->input('existing_image');
+        $imagePath = null;
+    
+        if ($request->hasFile('icon')) {
+            $image = $request->file('icon');
+            $imagePath = $image->store('amenity_images', 'public'); 
+        } else{
+            $imagePath = $previousImage;
+        }
+
+        $update = Amenity::where('id', $amenityId)
+                            ->update([
+                                'name' => $amenityName,
+                                'description' => $description,
+                                'image_url' => $imagePath 
+                            ]);
+        return response()->json(['success' => true, 'message' => 'Amenity details updated.']);                     
     }
 }

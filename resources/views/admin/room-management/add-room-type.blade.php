@@ -104,7 +104,7 @@
                         <!-- Room Type -->
                         <div class="col-md-6">
                             <label for="roomType" class="form-label">Room Type</label>
-                            <input type="text" class="form-control" id="roomType" name="roomType" placeholder="Enter room type" required onkeyup="checkRoomTypeExists(this)">
+                            <input type="text" class="form-control" id="roomType" name="roomType" placeholder="Enter room type" required onkeyup="checkExists(this)">
                             <span class="error" id="roomTypeError"></span>
                         </div>
                         <!-- Total room -->
@@ -150,7 +150,7 @@
                   <!-- Room Type -->
                   <div class="col-md-12 mb-4">
                       <label for="roomType" class="form-label">Room Type</label>
-                      <input type="text" class="form-control" id="editRoomType" name="roomType" placeholder="Enter room type" required onkeyup="checkRoomTypeExists(this)">
+                      <input type="text" class="form-control" id="editRoomType" name="roomType" placeholder="Enter room type" required onkeyup="checkExists(this)">
                       <span class="error" id="roomTypeError"></span>
                   </div>
                   <!-- Total room -->
@@ -287,12 +287,16 @@
       });
       
       // Function to check if room type exists dynamically
-      function checkRoomTypeExists(type) {
+      function checkExists(type) {
           var roomTypes = type.value;
           $.ajax({
-              url: "{{ route('admin.check-room-type-exists') }}", 
+              url: "{{ route('admin.check-if-exists') }}", 
               type: "GET",
-              data: { roomTypes: roomTypes },
+              data: {
+                table: 'room_types',
+                column: 'type_name',
+                value: roomTypes
+              },
               success: function(response) {
                   if (response.exists === true) {
                       $('#roomTypeError').text('This room type already exists.').removeClass('success').addClass('error'); 
@@ -313,9 +317,12 @@
           var roomTypeId = id;
           
           $.ajax({
-              url: "{{route('admin.get-room-type-for-edit')}}", 
+              url: "{{route('admin.get-data-for-edit')}}", 
               type: "GET",
-              data: { roomTypeId: roomTypeId },
+              data: {
+                table: 'room_types',
+                value: roomTypeId
+              },
               success: function(response) {
                 console.log(response);
                 $('#roomTypeId').val(response.data.id);
