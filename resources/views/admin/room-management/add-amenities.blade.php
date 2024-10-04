@@ -6,6 +6,7 @@
 .scuccess{
   color: green;
 }
+
 </style>
 @section('content')
     <div class="wrapper">
@@ -81,17 +82,23 @@
               @csrf
               <div class="card-body">
                   <div class="row mb-3">
-                      <!-- Amenity Name -->
+                    <div class="col-md-10">
                       <div class="col-md-12 mb-3">
-                          <label for="amenityName" class="form-label">Amenity Name</label>
-                          <input type="text" class="form-control" id="amenityName" name="amenityName" placeholder="Enter amenity name" required onkeyup="checkExists(this)">
-                          <span class="error" id="amenityNameError"></span>
+                        <label for="amenityName" class="form-label">Amenity Name</label>
+                        <input type="text" class="form-control" id="amenityName" name="amenityName" placeholder="Enter amenity name" required onkeyup="checkExists(this)">
+                        <span class="error" id="amenityNameError"></span>
                       </div>
                       <!-- Icon-->
                       <div class="col-md-12">
                           <label for="icon" class="form-label">Icon</label>
-                          <input type="file" class="form-control" id="icon" name="icon" required>
+                          <input type="file" class="form-control" id="icon" name="icon" required onchange="previewImageForAdd(this)">
                       </div>
+                    </div>
+                    <div class="col">
+                      <div>
+                        <img src="" alt="Amenity image" id="amenityIconPreviewAdd" style="height:150px;width:105px;">
+                      </div>
+                    </div>
                   </div>
                   <div class="row mb-3">
                       <div class="col-md-12">
@@ -345,15 +352,26 @@
           });
       }
       function previewImage(input) {
-    var file = input.files[0];
-    if (file) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            // Set the src of the preview image element to the file
-            $('#amenityIconPreview').attr('src', e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-}
+        var file = input.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // Set the src of the preview image element to the file
+                $('#amenityIconPreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+      }
+      function previewImageForAdd(input) {
+        var file = input.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // Set the src of the preview image element to the file
+                $('#amenityIconPreviewAdd').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+      }
     </script>
 @endsection
