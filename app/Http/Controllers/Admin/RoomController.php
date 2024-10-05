@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Room\Amenity;
+use App\Models\Admin\Room\RoomStatus;
 use App\Models\Admin\Room\RoomType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
@@ -30,12 +31,6 @@ class RoomController extends Controller
         ]);
        
         return response()->json(['success' => true, 'message' => 'Room type saved successfully.']);
-    }
-
-    public function getRoomType(Request $request)
-    {
-        $roomTypes = RoomType::orderBy('created_at', 'desc')->get();
-        return response()->json($roomTypes);
     }
   
     public function checkIfExists(Request $request)
@@ -68,6 +63,13 @@ class RoomController extends Controller
         $data = DB::table($table)->where('id', $id)->first();
     
         return response()->json(['data' => $data]);
+    }
+    public function getTableData(Request $request)
+    {
+        $table = $request->input('table'); 
+
+        $tableData = DB::table($table)->orderBy('created_at', 'desc')->get();
+        return response()->json($tableData);
     }
     public function updateRoomType(Request $request)
     {
@@ -139,11 +141,6 @@ class RoomController extends Controller
             return response()->json(['success' => false, 'message' => 'Failed to save amenity: ' . $e->getMessage()], 500);
         }
     }
-    public function getAmenity(Request $request)
-    {
-        $amenity = Amenity::orderBy('created_at', 'desc')->get();
-        return response()->json($amenity);
-    }
     public function updateAmenity(Request $request)
     {
         $amenityId = $request->input('amenityId');
@@ -166,5 +163,22 @@ class RoomController extends Controller
                                 'image_url' => $imagePath 
                             ]);
         return response()->json(['success' => true, 'message' => 'Amenity details updated.']);                     
+    }
+    public function viewAddRoomStatus()
+    {
+        return view('admin.room-management.add-room-status');
+    }
+    public function storeRoomStatus(Request $request)
+    {
+        $status = $request->input('status');
+        $description = $request->input('description');
+        
+        $data = RoomStatus::create([
+            'status_name' =>$status,
+            'description' =>$description
+        ]);
+        
+        return response()->json(['success' => true, 'message' => 'Room status saved successfully.']);
+        
     }
 }

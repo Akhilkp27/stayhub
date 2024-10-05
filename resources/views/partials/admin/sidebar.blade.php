@@ -90,14 +90,24 @@
                     <a href="{{route('admin.add-room-type')}}"> <span class="sub-item">Room Type</span></a>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Room Status</span></a>
+                    <a  data-bs-toggle="collapse" href="#submenu-status"> <span class="sub-item">Room Status</span><span class="caret"></span></a>
+                    <div class="collapse" id="submenu-status">
+                      <ul style="list-style-type: none;">
+                        <li>
+                            <a href="{{route('admin.add-room-status')}}"> <span class="sub-item">Room Status</span></a>
+                        </li>
+                        <li>
+                            <a href=""> <span class="sub-item">Room Status Update</span></a>
+                        </li>
+                      </ul>
+                    </div>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Room Availability</span></a>
+                    <a  href="#"> <span class="sub-item">Room Availability</span></a>
                 </li>
                 <li>
-                    <a  data-bs-toggle="collapse" href="#submenu2-1" > <span class="sub-item">Room Amenities</span><span class="caret"></span></a>
-                      <div class="collapse" id="submenu2-1">
+                    <a  data-bs-toggle="collapse" href="#submenu-amenity"> <span class="sub-item">Room Amenities</span><span class="caret"></span></a>
+                      <div class="collapse" id="submenu-amenity">
                         <ul style="list-style-type: none;">
                           <li>
                               <a href="{{route('admin.view-room-amenities')}}"> <span class="sub-item">Amenities List</span></a>

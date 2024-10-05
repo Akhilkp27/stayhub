@@ -96,7 +96,7 @@
                     </div>
                     <div class="col">
                       <div>
-                        <img src="" alt="Amenity image" id="amenityIconPreviewAdd" style="height:150px;width:105px;">
+                        <img src="{{asset('img/landscape-placeholder-svgrepo-com.svg')}}" alt="Amenity image" id="amenityIconPreviewAdd" style="height:150px;width:105px;">
                       </div>
                     </div>
                   </div>
@@ -173,8 +173,11 @@
       $(document).ready(function() {
         var table = $('#add-amenities').DataTable({
           "ajax": {
-                  "url": "{{ route('admin.get-amenity') }}", 
+                  "url": "{{ route('admin.get-table-data') }}", 
                   "type": "GET",
+                  "data": {
+                            "table": "amenities" 
+                         },
                   "dataSrc": "" 
               },
               "columns": [
@@ -189,9 +192,16 @@
                   { 
                       "data": null, // Action column
                       "render": function(data, type, row) {
+                        if(row.image_url == null){
+                          return `
+                               <img src="{{asset('img/landscape-placeholder-svgrepo-com.svg')}}" alt="Amenity Image" class="avatar-img rounded-circle"  style="height:60px; width:65px;"/>
+                          `;
+                        } else {
                           return `
                                <img src="/storage/${row.image_url}" alt="Amenity Image" class="avatar-img rounded-circle"  style="height:60px; width:65px;"/>
                           `;
+                        }
+                         
                       }
                   },
               

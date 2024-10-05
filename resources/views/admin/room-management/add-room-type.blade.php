@@ -199,8 +199,11 @@
           // Initialize DataTable with Ajax
           var table = $('#add-row').DataTable({
               "ajax": {
-                  "url": "{{ route('admin.get-room-type') }}", 
+                  "url": "{{ route('admin.get-table-data') }}", 
                   "type": "GET",
+                  "data": {
+                            "table": "room_types" 
+                         },
                   "dataSrc": "" 
               },
               "columns": [

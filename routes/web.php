@@ -41,19 +41,22 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         //room type
         Route::get('/add-room-type', [RoomController::class, 'viewAddRoomType'])->name('add-room-type');
         Route::post('/store-room-type',[RoomController::class, 'storeRoomType'])->name('store-room-type');
-        Route::get('/get-room-type',[RoomController::class, 'getRoomType'])->name('get-room-type');
         Route::post('/update-room-type', [RoomController::class, 'updateRoomType'])->name('update-room-type');
         Route::delete('/delete-room-type/{id}', [RoomController::class, 'deleteRoomType'])->name('delete-room-type');
 
-       // common functions
-       Route::get('/check-if-exists', [RoomController::class, 'checkIfExists'])->name('check-if-exists');
-       Route::get('/get-data-for-edit', [RoomController::class, 'getDataforEdit'])->name('get-data-for-edit');
+        // common routes
+        Route::get('/check-if-exists', [RoomController::class, 'checkIfExists'])->name('check-if-exists');
+        Route::get('/get-data-for-edit', [RoomController::class, 'getDataForEdit'])->name('get-data-for-edit');
+        Route::get('/get-table-data', [RoomController::class, 'getTableData'])->name('get-table-data');
 
         //room-amenities
         Route::get('/room-amenities', [RoomController::class, 'viewRoomAmenities'])->name('view-room-amenities');
         Route::post('/store-amenity', [RoomController::class, 'storeAmenity'])->name('store-amenity');
-        Route::get('/get-amenity', [RoomController::class, 'getAmenity'])->name('get-amenity');
         Route::post('/update-amenity', [RoomController::class, 'updateAmenity'])->name('update-amenity');
+
+        //room-status
+        Route::get('/room-status',[RoomController::class,'viewAddRoomStatus'])->name('add-room-status');
+        Route::post('/store-room-status', [RoomController::class, 'storeRoomStatus'])->name('store-room-status');
     });
     
 });
