@@ -210,7 +210,7 @@
                       "render": function(data, type, row) {
                           return `
                               <button class="btn btn-sm btn-primary" onclick="editAmenity(${row.id})"> 
-                               <img src="{{ asset('admin/icons/edit_square.png') }}" alt="Edit" style="width: 20px; height: 20px;"> Edit</button>
+                               <img src="{{ asset('admin/icons/edit_square.png') }}" alt="Edit" style="width:20px;height: 20px;"> Edit</button>
                           `;
                       }
                   }
@@ -304,6 +304,7 @@
                           toastr.success(response.message);
                           $('#add-amenities').DataTable().ajax.reload(null, false); 
                           $('#editAmenity')[0].reset(); 
+                          $('#description').summernote('code', '');
                           $('#editAmenityModal').modal('hide'); 
                       } else {
                           toastr.error('Something went wrong. Please try again.');
