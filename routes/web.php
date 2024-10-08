@@ -50,12 +50,12 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/get-table-data', [RoomController::class, 'getTableData'])->name('get-table-data');
 
         //room-amenities
-        Route::get('/room-amenities', [RoomController::class, 'viewRoomAmenities'])->name('view-room-amenities');
+        Route::get('/add-room-amenities', [RoomController::class, 'viewRoomAmenities'])->name('view-room-amenities');
         Route::post('/store-amenity', [RoomController::class, 'storeAmenity'])->name('store-amenity');
         Route::post('/update-amenity', [RoomController::class, 'updateAmenity'])->name('update-amenity');
 
         //room-status
-        Route::get('/room-status',[RoomController::class,'viewAddRoomStatus'])->name('add-room-status');
+        Route::get('/add-room-status',[RoomController::class,'viewAddRoomStatus'])->name('add-room-status');
         Route::post('/store-room-status', [RoomController::class, 'storeRoomStatus'])->name('store-room-status');
         Route::post('/update-status', [RoomController::class, 'updateStatus'])->name('update-room-status');
     });
