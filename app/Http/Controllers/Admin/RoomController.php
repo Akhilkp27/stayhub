@@ -78,12 +78,14 @@ class RoomController extends Controller
         $totalRooms = $request->input('totalRooms');  
         $availableRooms = $request->input('availableRooms');
         $description = $request->input('description');
+        $status = $request->input('roomTypeStatus');
         $update = RoomType::where('id',$roomTypeId)
                 ->update([
                     'type_name'  => $roomType, 
                     'total_rooms'  => $totalRooms,
                     'available_rooms'  => $totalRooms,
                     'description'  => $description,
+                    'status'  => $status,
                 ]);
 
         return response()->json(['success' => true, 'message' => 'Room type details updated.']);
@@ -180,5 +182,19 @@ class RoomController extends Controller
         
         return response()->json(['success' => true, 'message' => 'Room status saved successfully.']);
         
+    }
+    public function updateStatus(Request $request)
+    {
+        $roomStatusId = $request->input('roomStatusId');
+        $statusName = $request->input('status');
+        $description = $request->input('description');
+
+        $update = RoomStatus::where('id', $roomStatusId)
+                            ->update([
+                                'status_name' =>$statusName,
+                                'description' =>$description
+                            ]);
+        // dd($request->all());
+        return response()->json(['success' => true, 'message' => 'Status details updated.']);
     }
 }

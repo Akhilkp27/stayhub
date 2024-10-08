@@ -57,6 +57,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         //room-status
         Route::get('/room-status',[RoomController::class,'viewAddRoomStatus'])->name('add-room-status');
         Route::post('/store-room-status', [RoomController::class, 'storeRoomStatus'])->name('store-room-status');
+        Route::post('/update-status', [RoomController::class, 'updateStatus'])->name('update-room-status');
     });
     
 });

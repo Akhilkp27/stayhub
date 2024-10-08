@@ -15,7 +15,7 @@
 
 /* Optional: Adjust the width of the description column */
 .table th.description, .table td.description {
-    width: 300px; /* Adjust the width to fit the text content */
+    width: 200px; /* Adjust the width to fit the text content */
 }
 .error{
   color: red;
@@ -57,6 +57,7 @@
                                 <th>Total Rooms</th>
                                 <th>Available Rooms</th>
                                 <th class="description">Description</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -67,6 +68,7 @@
                                 <th>Total Rooms</th>
                                 <th>Available Rooms</th>
                                 <th>Description</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -154,15 +156,23 @@
                       <span class="error" id="roomTypeError"></span>
                   </div>
                   <!-- Total room -->
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                       <label for="totalRooms" class="form-label">Total Rooms</label>
                       <input type="text" class="form-control" id="editTotalRooms" name="totalRooms" placeholder="Enter total rooms" required>
                   </div>
                   <!-- Available room -->
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label for="availableRooms" class="form-label">Available Rooms</label>
                     <input type="text" class="form-control" id="availableRooms" name="availableRooms" placeholder="Enter total rooms" required>
-                </div>
+                  </div>
+                    <!-- status -->
+                  <div class="col-md-4">
+                    <label for="availableRooms" class="form-label">Status</label>
+                    <select name="roomTypeStatus" class="form-control" id="roomTypeStatus">
+                       <option value="active">Active</option>
+                       <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
               </div>
               <div class="row mb-3">
                   <div class="col-md-12">
@@ -218,11 +228,26 @@
                   { "data": "available_rooms" },
                   { "data": "description" },
                   { 
+                      "data": null, 
+                      "render": function(data, type, row) {
+                        if(row.status == 'active'){
+                          return `
+                               <span class="badge badge-pill badge-success">${row.status}</span>
+                          `;
+                        } else {
+                          return `
+                              <span class="badge badge-pill badge-danger">${row.status}</span>
+                          `;
+                        }
+                         
+                      }
+                  },
+                  { 
                       "data": null, // Action column
                       "render": function(data, type, row) {
                           return `
-                              <button class="btn btn-sm btn-primary" onclick="editRoomType(${row.id})">Edit</button>
-                              <button class="btn btn-sm btn-danger" onclick="deleteRoomType(${row.id})">Delete</button>
+                              <button class="btn btn-sm btn-primary" onclick="editRoomType(${row.id})">
+                                <img src="{{ asset('admin/icons/edit_square.png') }}" alt="Edit" style="width: 20px; height: 20px;"> Edit</button>
                           `;
                       }
                   }
@@ -332,6 +357,7 @@
                 $('#editRoomType').val(response.data.type_name);
                 $('#editTotalRooms').val(response.data.total_rooms);
                 $('#availableRooms').val(response.data.available_rooms);
+                $('#roomTypeStatus').val(response.data.status);
                 $('#editDescription').summernote('code', response.data.description);
                 $('#editRoomTypeModal').modal('show'); 
               },

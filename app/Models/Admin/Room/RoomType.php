@@ -10,6 +10,6 @@ class RoomType extends Model
     use HasFactory;
     protected $table = 'room_types';
     protected $fillable = [
-        'type_name', 'total_rooms', 'available_rooms', 'description',
+        'type_name', 'total_rooms', 'available_rooms', 'description', 'status',
     ];
 }
