@@ -167,7 +167,7 @@
                       "render": function(data, type, row) {
                           return `
                               <button class="btn btn-sm btn-primary" onclick="editRoomStatus(${row.id})">
-                                <img src="{{ asset('admin/icons/edit_square.png') }}" alt="Edit" style="height: 20px;"> Edit</button>
+                                <img src="{{ asset('admin/icons/edit_square.png') }}" alt="Edit" style="width:20px;height: 20px;"> Edit</button>
                               
                           `;
                       }
