@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\CommonHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Room\Amenity;
+use App\Models\Admin\Room\Room;
 use App\Models\Admin\Room\RoomStatus;
 use App\Models\Admin\Room\RoomType;
 use Illuminate\Http\Request;
@@ -22,9 +24,11 @@ class RoomController extends Controller
         $roomType = $request->input('roomType');  
         $totalRooms = $request->input('totalRooms');  
         $description = $request->input('description');
+        $prefix = $request->input('prefix');
 
         $roomTypeData = RoomType::create([
             'type_name'  => $roomType, 
+            'prefix' => $prefix,
             'total_rooms'  => $totalRooms,
             'available_rooms'  => $totalRooms,
             'description'  => $description,
@@ -69,6 +73,14 @@ class RoomController extends Controller
         $table = $request->input('table'); 
 
         $tableData = DB::table($table)->orderBy('created_at', 'desc')->get();
+        
+        if ($table === 'rooms') {
+            foreach ($tableData as $room) {
+                $room->room_status = CommonHelper::getRoomStatusByStatusId($room->current_status_id);
+                $room->room_type = CommonHelper::getRoomTypeByRoomTypeId($room->room_type_id);
+            }
+        }
+    
         return response()->json($tableData);
     }
     public function updateRoomType(Request $request)
@@ -79,9 +91,12 @@ class RoomController extends Controller
         $availableRooms = $request->input('availableRooms');
         $description = $request->input('description');
         $status = $request->input('roomTypeStatus');
+        $prefix = $request->input('prefix');
+
         $update = RoomType::where('id',$roomTypeId)
                 ->update([
                     'type_name'  => $roomType, 
+                    'prefix' => $prefix,
                     'total_rooms'  => $totalRooms,
                     'available_rooms'  => $totalRooms,
                     'description'  => $description,
@@ -104,6 +119,17 @@ class RoomController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => 'Failed to delete Room Type'], 500);
         }
+    }
+    public function getTotalRoom(Request $request)
+    {
+        $totalRooms = $request->input('value');
+        $roomTypeId = $request->input('id');
+
+        $existingRoomCount = Room:: where('room_type_id',$roomTypeId)->count();
+
+        if ($existingRoomCount >= $totalRooms ) {
+        return response()->json([ 'success' => false, 'message' => 'Cannot reduce total rooms below the number of existing rooms ('.$existingRoomCount.')' ], 400);// 400 Bad Request
+       }
     }
 
     public function viewRoomAmenities()
@@ -194,7 +220,90 @@ class RoomController extends Controller
                                 'status_name' =>$statusName,
                                 'description' =>$description
                             ]);
-        // dd($request->all());
+        
         return response()->json(['success' => true, 'message' => 'Status details updated.']);
+    }
+
+    public function viewRoomList()
+    {
+        $roomType = RoomType::all();
+        return view('admin.room-management.add-room',compact('roomType'));
+    }
+    public function getRoomData(Request $request)
+    {
+        $table = $request->input('table'); 
+        $selectedRoomType = $request->input('value');
+        $roomType = RoomType::find($selectedRoomType); 
+        $existingRoomCount = Room::where('room_type_id', $selectedRoomType)->count();
+
+        if($existingRoomCount >= $roomType->total_rooms){
+            
+            return response()->json([ 'success' => false, 'message' => 'Room limit reached for this room type. You cannot create more than ' . $roomType->total_rooms . ' rooms.' ], 400);
+        }
+
+        $nextRoomCount = $existingRoomCount + 1;
+        $roomNumber = $roomType->prefix . '-' . str_pad($nextRoomCount, 3, '0', STR_PAD_LEFT);
+        $tableData = DB::table($table)->where('id',$selectedRoomType)->first();
+
+        return response()->json(['roomNumber' => $roomNumber,'tableData' => $tableData]);
+    }
+    public function storeRoom(Request $request)
+    { 
+        try{
+            $priceString = $request->input('pricePerNight');
+            $cleanedPrice = str_replace(['₹', ','], '', $priceString);
+            $roomType = RoomType::find($request->input('roomType'));
+
+            // Count the existing rooms of this type
+            $existingRoomsCount = Room::where('room_type_id', $roomType->id)->count();
+    
+            // Check if the current count has reached the total room limit
+            if ($existingRoomsCount >= $roomType->total_rooms) {
+                return response()->json(['success' => false, 'message' => 'Room limit reached for this room type. You cannot create more than.' .$roomType->total_rooms . ' rooms.'], 400);
+            }
+            
+            $roomData = new Room();
+            $roomData->room_number = $request->input('roomNumber');
+            $roomData->room_type_id = $request->input('roomType');
+            $roomData->price_per_night = $cleanedPrice;
+            $roomData->availability = config('constants.room.AVAILABLE');
+            $roomData->current_status_id = '1';
+            $roomData->max_adults = $request->input('maximumAdult');
+            $roomData->max_children = $request->input('maximumChild');
+            $roomData->save();
+            
+            return response()->json(['success' => true, 'message' => 'Room saved successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to save room: ' . $e->getMessage()], 500);
+        }
+        
+    }
+    public function getDataForEditRoom(Request $request)
+    {
+        $roomId = $request->input('value');
+
+        $roomData = DB::table('rooms as rm')
+                        ->leftJoin('room_types as rt','rm.room_type_id','=','rt.id' )
+                        ->select('rm.*','rt.*','rm.id as room_id')
+                        ->where('rm.id', $roomId)
+                        ->first();
+        return response()->json(['data' => $roomData]);                
+    }
+    public function updateRoom(Request $request)
+    {
+        $roomId = $request->input('roomId');
+        $priceString = $request->input('pricePerNight');
+        $cleanedPrice = str_replace(['₹', ','], '', $priceString);
+
+        $update = Room::where('id', $roomId)
+                            ->update([
+                                'room_number' => $request->input('roomNumber'),
+                                'room_type_id' => $request->input('roomType'),
+                                'price_per_night' => $cleanedPrice,
+                                'max_adults' => $request->input('maximumAdult'),
+                                'max_children' => $request->input('maximumChild'),
+                            ]);
+        
+        return response()->json(['success' => true, 'message' => 'Room details updated.']);
     }
 }

@@ -75,7 +75,7 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') || request()->is('admin/room-management/room-amenities')  ? 'active' : ''}}">
+          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') || request()->is('admin/room-management/add-room-amenities') || request()->is('admin/room-management/add-room-status') || request()->is('admin/room-management/add-room')  ? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu2">
               <i class="fas fa-hotel"></i>
               <p>Room Management</p>
@@ -84,7 +84,7 @@
             <div class="collapse" id="submenu2">
               <ul class="nav nav-collapse">
                 <li>
-                    <a href="#"> <span class="sub-item">Room List</span></a>
+                    <a href="{{route('admin.view-room-list')}}"> <span class="sub-item">Room List</span></a>
                 </li>
                 <li>
                     <a href="{{route('admin.add-room-type')}}"> <span class="sub-item">Room Type</span></a>

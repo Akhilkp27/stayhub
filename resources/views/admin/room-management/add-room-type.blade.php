@@ -54,6 +54,7 @@
                             <tr>
                                 <th>Sl.No</th>
                                 <th>Room Type</th>
+                                <th>Prefix</th>
                                 <th>Total Rooms</th>
                                 <th>Available Rooms</th>
                                 <th class="description">Description</th>
@@ -65,6 +66,7 @@
                             <tr>
                                 <th>Sl.No</th>
                                 <th>Room Type</th>
+                                <th>Prefix</th>
                                 <th>Total Rooms</th>
                                 <th>Available Rooms</th>
                                 <th>Description</th>
@@ -104,15 +106,19 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <!-- Room Type -->
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <label for="roomType" class="form-label">Room Type</label>
                             <input type="text" class="form-control" id="roomType" name="roomType" placeholder="Enter room type" required onkeyup="checkExists(this)">
                             <span class="error" id="roomTypeError"></span>
                         </div>
                         <!-- Total room -->
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <label for="totalRooms" class="form-label">Total Rooms</label>
                             <input type="text" class="form-control" id="totalRooms" name="totalRooms" placeholder="Enter total rooms" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="prefix" class="form-label">Prefix</label>
+                            <input type="text" class="form-control" id="prefix" name="prefix" placeholder="Enter room type prefix" required minlength="3" maxlength="3">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -158,16 +164,16 @@
                   <!-- Total room -->
                   <div class="col-md-4">
                       <label for="totalRooms" class="form-label">Total Rooms</label>
-                      <input type="text" class="form-control" id="editTotalRooms" name="totalRooms" placeholder="Enter total rooms" required>
+                      <input type="text" class="form-control" id="editTotalRooms" name="totalRooms" placeholder="Enter total rooms" required onkeyup="checkTotalRooms()">
+                      <span class="error" id="totalError"></span>
                   </div>
-                  <!-- Available room -->
                   <div class="col-md-4">
-                    <label for="availableRooms" class="form-label">Available Rooms</label>
-                    <input type="text" class="form-control" id="availableRooms" name="availableRooms" placeholder="Enter total rooms" required>
+                    <label for="prefix" class="form-label">Prefix</label>
+                    <input type="text" class="form-control" id="editPrefix" name="prefix" placeholder="" required minlength="3" maxlength="3">
                   </div>
                     <!-- status -->
                   <div class="col-md-4">
-                    <label for="availableRooms" class="form-label">Status</label>
+                    <label for="roomTypeStatus" class="form-label">Status</label>
                     <select name="roomTypeStatus" class="form-control" id="roomTypeStatus">
                        <option value="active">Active</option>
                        <option value="inactive">Inactive</option>
@@ -185,7 +191,7 @@
           <div class="modal-footer">
             <input type="text" id="roomTypeId" hidden>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" id="saveBtn"  class="btn btn-success">Update</button>
+            <button type="submit" id="saveBtnEdit" class="btn btn-success">Update</button>
           </div>
 
       </form>
@@ -194,7 +200,7 @@
     </div>
   </div>
 </div>
-    <script>
+<script>
       $(document).ready(function() {
         $('#editDescription').summernote({
             height: 200,   // Set the height of the editor
@@ -224,6 +230,7 @@
                       }
                   }, 
                   { "data": "type_name" },
+                  { "data": "prefix" },
                   { "data": "total_rooms" },
                   { "data": "available_rooms" },
                   { "data": "description" },
@@ -354,9 +361,10 @@
                 value: roomTypeId
               },
               success: function(response) {
-                console.log(response);
+                // $('#saveBtn').attr('disabled', false);
                 $('#roomTypeId').val(response.data.id);
                 $('#editRoomType').val(response.data.type_name);
+                $('#editPrefix').val(response.data.prefix);
                 $('#editTotalRooms').val(response.data.total_rooms);
                 $('#availableRooms').val(response.data.available_rooms);
                 $('#roomTypeStatus').val(response.data.status);
@@ -404,6 +412,35 @@
         });
         
       }
-      </script>
-      
+      function checkTotalRooms()
+      {
+        var totalRooms = $('#editTotalRooms').val(); 
+        var roomTypeId = $('#roomTypeId').val(); 
+        
+        $.ajax({
+              url: "{{route('admin.get-total-room')}}", 
+              type: "GET",
+              data: { value: totalRooms , id: roomTypeId},
+              success: function(response) {
+                if (response.success == true) {
+                      
+                } else {
+                  $('#totalError').text('');
+                  $('#saveBtnEdit').prop('disabled', false); 
+                }
+              },
+              error: function(xhr) {
+                  // This handles any non-200 HTTP status codes
+                  var response = xhr.responseJSON;
+                  if (response && response.message) {
+                    $('#totalError').text(response.message);
+                    $('#saveBtnEdit').prop('disabled', true); 
+                  } else {
+                    toastr.error('An unexpected error occurred.');
+                  }
+              }
+          });
+        
+      }
+</script>
 @endsection

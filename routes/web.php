@@ -43,6 +43,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::post('/store-room-type',[RoomController::class, 'storeRoomType'])->name('store-room-type');
         Route::post('/update-room-type', [RoomController::class, 'updateRoomType'])->name('update-room-type');
         Route::delete('/delete-room-type/{id}', [RoomController::class, 'deleteRoomType'])->name('delete-room-type');
+        Route::get('/get-total-rooms', [RoomController::class, 'getTotalRoom'])->name('get-total-room');
 
         // common routes
         Route::get('/check-if-exists', [RoomController::class, 'checkIfExists'])->name('check-if-exists');
@@ -58,6 +59,15 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/add-room-status',[RoomController::class,'viewAddRoomStatus'])->name('add-room-status');
         Route::post('/store-room-status', [RoomController::class, 'storeRoomStatus'])->name('store-room-status');
         Route::post('/update-status', [RoomController::class, 'updateStatus'])->name('update-room-status');
+
+        //room
+        Route::get('/add-room', [RoomController::class, 'viewRoomList'])->name('view-room-list');
+        Route::get('/get-room-data',[RoomController::class, 'getRoomData'])->name('get-room-data');
+        Route::post('/store-room', [RoomController::class, 'storeRoom'])->name('store-room');
+        Route::get('get-data-for-edit-room', [RoomController::class, 'getDataForEditRoom'])->name('get-data-for-edit-room');
+        Route::post('/update-room', [RoomController::class, 'updateRoom'])->name('update-room-data');
+        
+        
     });
     
 });
