@@ -97,7 +97,7 @@
                             <a href="{{route('admin.add-room-status')}}"> <span class="sub-item">Room Status</span></a>
                         </li>
                         <li>
-                            <a href=""> <span class="sub-item">Room Status Update</span></a>
+                            <a href="{{route('admin.view-room-status')}}"> <span class="sub-item">Room Status Update</span></a>
                         </li>
                       </ul>
                     </div>

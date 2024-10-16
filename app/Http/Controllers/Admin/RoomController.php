@@ -7,8 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Room\Amenity;
 use App\Models\Admin\Room\Room;
 use App\Models\Admin\Room\RoomStatus;
+use App\Models\Admin\Room\RoomStatusHistory;
+use App\Models\Admin\Room\RoomStatusUpdate;
 use App\Models\Admin\Room\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB; 
 
@@ -305,5 +308,35 @@ class RoomController extends Controller
                             ]);
         
         return response()->json(['success' => true, 'message' => 'Room details updated.']);
+    }
+    public function viewRoomStatus()
+    {
+        $roomStatus = RoomStatus::all();
+        return view('admin.room-management.room-status-update',compact('roomStatus'));
+    }
+    public function updateRoomStatus(Request $request)
+    {
+        $roomId = $request->input('roomId');
+        $selectedStatus = $request->input('statusSelect');
+        
+        $update = Room::where('id', $roomId)->update([ 'current_status_id' => $selectedStatus]);
+        if (Auth::guard('admin')->check()) {
+            // Admin is updating the status
+            RoomStatusHistory::create([
+                'room_id' => $roomId,
+                'status_id' => $selectedStatus,
+                'updated_by_admin' => Auth::guard('admin')->id(),
+            ]);
+        } elseif (Auth::guard('staff')->check()) {
+            // Staff is updating the status
+            RoomStatusHistory::create([
+                'room_id' => $roomId,
+                'status' => $selectedStatus,
+                'updated_by_staff' => Auth::guard('staff')->id(),
+            ]);
+        }
+        
+        return response()->json(['success' => true, 'message' => 'Room status updated.']);
+        
     }
 }

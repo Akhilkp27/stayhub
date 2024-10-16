@@ -12,10 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->unsignedBigInteger('current_status_id')->nullable()->after('availability');;
-
-            $table->foreign('current_status_id')->references('id')->on('rooms')->onUpdate('cascade')->onDelete('cascade');
+            // Add a nullable foreign key column for current_status_id
+            $table->unsignedBigInteger('current_status_id')->nullable()->after('availability');
+        
+            // Set up the foreign key constraint to reference the room_statuses table
+            $table->foreign('current_status_id')->references('id')->on('room_statuses')->onUpdate('cascade')->onDelete('set null');
         });
+        
     }
 
     /**
