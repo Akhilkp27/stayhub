@@ -75,7 +75,9 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') || request()->is('admin/room-management/add-room-amenities') || request()->is('admin/room-management/add-room-status') || request()->is('admin/room-management/add-room')  ? 'active' : ''}}">
+          <li class="nav-item {{ request()->is('admin/room-management/add-room-type') || request()->is('admin/room-management/add-room-amenities') 
+                                  || request()->is('admin/room-management/add-room-status') || request()->is('admin/room-management/add-room') 
+                                  || request()->is('admin/room-management/room-status-update') || request()->is('admin/room-management/room-status-update-history')? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu2">
               <i class="fas fa-hotel"></i>
               <p>Room Management</p>
@@ -98,6 +100,9 @@
                         </li>
                         <li>
                             <a href="{{route('admin.view-room-status')}}"> <span class="sub-item">Room Status Update</span></a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.room-status-update-history')}}"> <span class="sub-item">Room Status History</span></a>
                         </li>
                       </ul>
                     </div>
@@ -159,9 +164,9 @@
                 <li>
                     <a href="{{route('admin.view-staff-list')}}"> <span class="sub-item">Staff List</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{route('admin.view-role-list')}}"> <span class="sub-item">Roles and Permissions</span></a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{route('admin.view-activity-log')}}"> <span class="sub-item">Activity Log</span></a>
                 </li>
@@ -258,10 +263,13 @@
             <div class="collapse" id="submenu9">
               <ul class="nav nav-collapse">
                 <li>
-                    <a href="#"> <span class="sub-item">Role-Based Access Control</span></a>
+                    <a href="#"> <span class="sub-item">Roles Management</span></a>
                 </li>
                 <li>
-                    <a href="#"> <span class="sub-item">Audit Trails</span></a>
+                    <a href="#"> <span class="sub-item">Permissions Management</span></a>
+                </li>
+                <li>
+                  <a href="#"> <span class="sub-item">Role-Permission Mapping</span></a>
                 </li>
                </ul>
             </div>

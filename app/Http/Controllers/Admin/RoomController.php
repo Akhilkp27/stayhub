@@ -339,4 +339,14 @@ class RoomController extends Controller
         return response()->json(['success' => true, 'message' => 'Room status updated.']);
         
     }
+
+    public function getRoomStatusUpdateHistory()
+    {
+        return view('admin.room-management.room-status-history');
+    }
+    public function getUpdateHistory(Request $request)
+    {
+        // $data = DB::table('rooms as rm')
+        // ->leftJoin('room_status_history as rsh', 'rsh.room_id', '=', 'rm.id')
+    }
 }

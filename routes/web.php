@@ -61,6 +61,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::post('/update-status', [RoomController::class, 'updateStatus'])->name('update-room-status');
         Route::get('/room-status-update',[RoomController::class,'viewRoomStatus'])->name('view-room-status');
         Route::post('/update-room-status', [RoomController::class,'updateRoomStatus'])->name('update-room-status');
+        Route::get('/room-status-update-history', [RoomController::class, 'getRoomStatusUpdateHistory'])->name('room-status-update-history');
+        Route::get('/get-update-history', [RoomController::class, 'getUpdateHistory'])->name('get-update-history');
 
         //room
         Route::get('/add-room', [RoomController::class, 'viewRoomList'])->name('view-room-list');
@@ -68,9 +70,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::post('/store-room', [RoomController::class, 'storeRoom'])->name('store-room');
         Route::get('get-data-for-edit-room', [RoomController::class, 'getDataForEditRoom'])->name('get-data-for-edit-room');
         Route::post('/update-room', [RoomController::class, 'updateRoom'])->name('update-room-data');
-        
-        
-        
     });
     
 });
