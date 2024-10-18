@@ -64,89 +64,71 @@
     </div>
 <script>
    $(document).ready(function() {
-        var table = $('#room-status').DataTable({
-          "ajax": {
-                  "url": "{{ route('admin.get-table-data') }}", 
-                  "type": "GET",
-                  "data": {
-                            "table": "rooms" 
-                         },
-                  "dataSrc": "" 
-              },
-              "columns": [
-                  { 
-                      "data": null, 
-                      "render": function (data, type, row, meta) {
-                          return meta.row + 1; // Index of the row
-                      }
-                  }, 
-                  { "data": "room_number" },
-                  { 
-                      "data": null, 
-                      "render": function(data, type, row) {
-                        
-                        var roomType = row.room_type.type_name; 
-                        return roomType;
-                         
-                      }
-                  },
-                  { 
-                      "data": null, 
-                      "render": function(data, type, row) {
-                        
-                        var roomStatus = row.room_status.status_name;
-                        var badgeClass = null; 
-
-                        switch (roomStatus) {
-                            case 'Available':
-                                badgeClass  = 'badge-success';
-                                break;
-                            case 'Occupied':
-                                badgeClass  = 'badge-danger';
-                                break;
-                            case 'Reserved':
-                                badgeClass  = 'badge-warning';
-                                break;
-                            case 'Under Maintenance':
-                                badgeClass  = 'badge-secondary';
-                                break;
-                            case 'Cleaning in Progress':
-                                badgeClass  = 'badge-info';
-                                break;
-                            case 'No Show':
-                                badgeClass  = 'badge-dark';
-                                break;
-                            case 'Checked Out':
-                                badgeClass  = 'badge-primary';
-                                break;
-                            case 'Pending Confirmation':
-                                badgeClass  = 'badge-warning';
-                                break;
-                            case 'Blocked':
-                                badgeClass  = 'badge-danger';
-                                break;
-                            case 'Inactive':
-                                $badgeClass  = 'badge-secondary';
-                                break;
-                            default:
-                                $badgeClass  = 'badge-secondary';
-                                break;
+      $('#room-status').DataTable({
+        "processing": false,
+        "serverSide": false, // Change this to true if server-side processing is needed
+        "ajax": {
+            "url": "{{ route('admin.get-update-history') }}", 
+            "type": "GET",
+            "dataSrc": "data" // Make sure 'data' key is used as this is the JSON structure.
+        },
+        "columns": [
+            { 
+                "data": null, 
+                "render": function (data, type, row, meta) {
+                    return meta.row + 1; // Display row index
+                }
+            },
+            { "data": "room_number" },
+            { 
+                        "data": "status", 
+                        "render": function (data, type, row) {
+                            // Add badge styling based on room status
+                            var badgeClass = 'badge-secondary'; // Default class
+                            switch (data) {
+                                case 'Available':
+                                    badgeClass = 'badge-success';
+                                    break;
+                                case 'Occupied':
+                                    badgeClass = 'badge-danger';
+                                    break;
+                                case 'Reserved':
+                                    badgeClass = 'badge-warning';
+                                    break;
+                                case 'Under Maintenance':
+                                    badgeClass = 'badge-secondary';
+                                    break;
+                                case 'Cleaning in Progress':
+                                    badgeClass = 'badge-info';
+                                    break;
+                                case 'No Show':
+                                    badgeClass = 'badge-dark';
+                                    break;
+                                case 'Checked Out':
+                                    badgeClass = 'badge-primary';
+                                    break;
+                                case 'Pending Confirmation':
+                                    badgeClass = 'badge-warning';
+                                    break;
+                                case 'Blocked':
+                                    badgeClass = 'badge-danger';
+                                    break;
+                                case 'Inactive':
+                                    badgeClass = 'badge-secondary';
+                                    break;
+                                default:
+                                    badgeClass = 'badge-secondary';
+                                    break;
+                            }
+                            return `<span class="badge badge-pill ${badgeClass}">${data}</span>`;
                         }
-                        return `<span class="badge badge-pill ${badgeClass}">${roomStatus}</span>`;
-                      }
-                  },
-                  { 
-                      "data": null, // Action column
-                      "render": function(data, type, row) {
-                          return `
-                              <button class="btn btn-sm btn-primary" onclick="editRoom(${row.id})"> 
-                               <img src="{{ asset('admin/icons/edit_square.png') }}" alt="Edit" style="width:20px;height: 20px;"> Edit</button>
-                          `;
-                      }
-                  }
-              ]
-         });
-     });  
+                    },
+            { "data": "updated_by_name" }, // Display the name of the person who updated
+            { "data": "updated_by_role" }, // Display their role (Admin/Staff)
+            { "data": "updated_at" } // Display the update timestamp
+        ]
+      });
+});
 
 </script>
 @endsection

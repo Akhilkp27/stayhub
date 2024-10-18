@@ -346,7 +346,28 @@ class RoomController extends Controller
     }
     public function getUpdateHistory(Request $request)
     {
-        // $data = DB::table('rooms as rm')
-        // ->leftJoin('room_status_history as rsh', 'rsh.room_id', '=', 'rm.id')
+        $roomStatusHistory = RoomStatusHistory::with(['updatedByAdmin.role', 'updatedByStaff.role', 'room'])
+                            ->orderBy('updated_at', 'DESC')
+                            ->get()
+                            ->map(function ($history) {
+                                // Check whether the update was done by an admin or staff
+                                $updatedByName = $history->updatedByAdmin 
+                                    ? $history->updatedByAdmin->first_name . ' ' . $history->updatedByAdmin->last_name
+                                    : ($history->updatedByStaff ? $history->updatedByStaff->first_name. ' ' . $history->updatedByStaff->last_name : 'N/A');
+
+                                $updatedByRole = $history->updatedByAdmin 
+                                    ? $history->updatedByAdmin->role->role_name 
+                                    : ($history->updatedByStaff ? $history->updatedByStaff->role->role_name : 'N/A');
+                                $status = CommonHelper::getRoomStatusByStatusId($history->status_id);
+                                return [
+                                    'room_number' => $history->room ? $history->room->room_number : 'N/A',
+                                    'status' => $status->status_name,
+                                    'updated_at' => $history->updated_at->format('Y-m-d H:i:s'),
+                                    'updated_by_name' => $updatedByName,
+                                    'updated_by_role' => $updatedByRole,
+                                ];
+                            });
+
+        return response()->json(['data' => $roomStatusHistory]);
     }
 }

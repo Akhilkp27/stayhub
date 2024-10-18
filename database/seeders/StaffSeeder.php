@@ -19,7 +19,7 @@ class StaffSeeder extends Seeder
             'last_name' => 'Wick',
             'email' => 'staff@stayhub.com',
             'phone' => '1234567890',
-            'role' => 1, // Assuming 1 is a valid role in the user_permissions table
+            'role' => 2, 
             'username' => 'johndoe',
             'password' => Hash::make('staff123'),
             'address' => '123 Main Street, City, Country',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\StaffManagementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Roles\RoleController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::post('/add-new-staff', [StaffManagementController::class, 'addNewStaff'])->name('add-new-staff');
         Route::get('/edit-staff-modal', [StaffManagementController::class, 'getStaffDataForEdit'])->name('get-staff-data-for-edit');
         Route::put('/update-staff', [StaffManagementController::class, 'updateStaffData'])->name('update-staff');
-        Route::get('/role-list', [StaffManagementController::class, 'viewRoleList'])->name('view-role-list');
+        // Route::get('/role-list', [StaffManagementController::class, 'viewRoleList'])->name('view-role-list');
         Route::get('/activity-log', [StaffManagementController::class, 'viewActivityLog'])->name('view-activity-log');
     });
 
@@ -71,7 +72,15 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('get-data-for-edit-room', [RoomController::class, 'getDataForEditRoom'])->name('get-data-for-edit-room');
         Route::post('/update-room', [RoomController::class, 'updateRoom'])->name('update-room-data');
     });
-    
+
+    //access-control
+    Route::prefix('access-control')->group(function () {
+
+        //role-management
+        Route::get('/add-role', [RoleController::class, 'viewRoleList'])->name('view-role-list');
+        Route::post('/store-role', [RoleController::class, 'storeRole'])->name('store-role');
+        Route::post('update-role', [RoleController::class, 'updateRole'])->name('update-role');
+    });
 });
 
 Route::middleware('auth:staff')->prefix('staff')->name('staff.')->group(function () {

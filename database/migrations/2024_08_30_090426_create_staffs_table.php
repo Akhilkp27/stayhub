@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('last_name', 100)->nullable();
             $table->string('email', 255)->unique();
             $table->string('phone', 20)->nullable();
-            $table->foreignId('role')->constrained('user_permissions')->onUpdate('cascade')->onDelete('cascade');
             $table->string('username', 100)->unique();
             $table->string('password', 255);
             $table->text('address')->nullable();

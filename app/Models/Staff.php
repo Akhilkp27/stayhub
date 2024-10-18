@@ -25,9 +25,9 @@ class Staff extends Authenticatable
         'status',
         'image_url',
     ];
-    // If you want to establish a relationship with user_permissions, you can add:
-    public function userPermission()
+    
+    public function role()
     {
-        return $this->belongsTo(UserPermission::class, 'role');
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

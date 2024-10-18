@@ -254,7 +254,7 @@
                </ul>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ request()->is('admin/access-control/add-role') ? 'active' : ''}}">
             <a data-bs-toggle="collapse" href="#submenu9">
               <i class="fas fa-user-shield"></i>
               <p>Acess And Control</p>
@@ -263,7 +263,7 @@
             <div class="collapse" id="submenu9">
               <ul class="nav nav-collapse">
                 <li>
-                    <a href="#"> <span class="sub-item">Roles Management</span></a>
+                    <a href="{{route('admin.view-role-list')}}"> <span class="sub-item">Roles Management</span></a>
                 </li>
                 <li>
                     <a href="#"> <span class="sub-item">Permissions Management</span></a>

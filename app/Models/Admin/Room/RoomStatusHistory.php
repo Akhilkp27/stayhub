@@ -17,11 +17,15 @@ class RoomStatusHistory extends Model
 
     public function updatedByAdmin()
     {
-        return $this->belongsTo(Admin::class, 'updated_by_admin');
+        return $this->belongsTo(Admin::class, 'updated_by_admin', 'id');
     }
     
     public function updatedByStaff()
     {
-        return $this->belongsTo(Staff::class, 'updated_by_staff');
+        return $this->belongsTo(Staff::class, 'updated_by_staff', 'id');
+    }
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'room_id');
     }
 }
